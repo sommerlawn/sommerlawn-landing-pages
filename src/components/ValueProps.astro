@@ -1,0 +1,75 @@
+---
+const props = [
+  {
+    icon: '⏭️',
+    title: 'Skip Anytime',
+    feature: 'No notice required, no penalties.',
+    benefit: 'In those hot summer months when your lawn isn\'t growing, just shoot us a text and we\'ll skip it.',
+  },
+  {
+    icon: '💳',
+    title: 'Card on File',
+    feature: 'Automatic charge after each service.',
+    benefit: 'No need to track down invoices or leave a check under the mat. You just get a receipt in your email.',
+  },
+  {
+    icon: '📱',
+    title: 'Text Reminders',
+    feature: 'Get notified the day of your service.',
+    benefit: 'Helpful if you have dogs, need to unlock your gate, or just want to know when we\'re on your property.',
+  },
+  {
+    icon: '👤',
+    title: 'Dedicated Crew Lead',
+    feature: 'Same person mowing your yard every week.',
+    benefit: 'Our in-house crew leads own their routes and get to know your specific lawn needs and personal preferences.',
+  },
+  {
+    icon: '💬',
+    title: 'Text Us Anytime',
+    feature: 'Quick communication, no phone tag.',
+    benefit: 'Shoot us a quick text to adjust service, ask questions, or get confirmation when the job\'s scheduled.',
+  },
+  {
+    icon: '📅',
+    title: 'Reliability',
+    feature: 'We show up every week, no reminders needed.',
+    benefit: 'You don\'t have to check in on us or remind us to come. We\'re on your property on schedule, every single week.',
+  },
+];
+---
+
+<section class="px-6 py-20 bg-dark-card">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-4">
+      Why Add Mowing?
+    </h2>
+    <p class="text-gray-400 text-center mb-14 max-w-2xl mx-auto">
+      You already trust us with your lawn. Here's what makes our mowing service a no-brainer.
+    </p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {props.map((prop, i) => (
+        <div class="card-reveal opacity-0 translate-y-12 bg-dark border border-dark-border rounded-xl p-6 hover:border-smurf/30 transition-all duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1)]" style={`transition-delay: ${i * 150}ms`}>
+          <div class="text-3xl mb-4">{prop.icon}</div>
+          <h3 class="text-xl font-semibold text-white mb-2">{prop.title}</h3>
+          <p class="text-smurf text-sm font-medium mb-2">{prop.feature}</p>
+          <p class="text-gray-400 text-sm leading-relaxed">{prop.benefit}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('opacity-0', 'translate-y-8');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card-reveal').forEach((card) => observer.observe(card));
+</script>

@@ -1,0 +1,41 @@
+---
+
+---
+
+<section class="relative min-h-[70vh] flex items-center justify-center px-6 py-20">
+  <!-- Hero background image -->
+  <div class="absolute inset-0">
+    <img src="/normal-mower.png" alt="Sommer Lawn mowing crew at work" class="w-full h-full object-cover object-[30%_top]" />
+    <div class="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/50 to-dark"></div>
+  </div>
+
+  <div class="relative z-10 max-w-3xl mx-auto text-center">
+    <h1 id="hero-heading" class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+      <span id="hero-prefix">Sign Up for</span><br />
+      <span class="text-smurf">Sommer Lawn's</span> Mowing Service
+    </h1>
+
+    <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+      Weekly or bi-weekly — same crew, same quality, zero hassle.
+      Mowing, trimming, edging, and blowing off all concrete surfaces.
+    </p>
+
+    <a
+      href="#signup"
+      class="inline-block bg-smurf hover:bg-smurf-dark text-white font-semibold text-lg px-8 py-4 rounded-lg transition-colors"
+    >
+      Sign Up
+    </a>
+  </div>
+</section>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get('first');
+  if (name) {
+    const prefix = document.getElementById('hero-prefix');
+    if (prefix) {
+      prefix.textContent = `Hey ${name}, consider`;
+    }
+  }
+</script>

@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ValueProps from '../components/ValueProps.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Testimonials from '../components/Testimonials.astro';
+import SignupForm from '../components/SignupForm.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Add Mowing Service | Sommer Lawn & Landscape"
+  description="Add weekly or bi-weekly mowing to your Sommer Lawn services. Same crew, same quality, zero hassle."
+>
+  <Hero />
+  <ValueProps />
+
+  <!-- Full-width photo break -->
+  <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+    <img src="/truck+mower.jpeg" alt="Sommer Lawn & Landscape branded truck with mower" class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/30"></div>
+  </div>
+
+  <HowItWorks />
+  <Testimonials />
+
+  <SignupForm />
+
+  <!-- Full-width photo break -->
+  <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+    <img src="/mower-close-up.png" alt="Close-up of Sommer Lawn mower on fresh-cut grass" class="w-full h-full object-cover object-top" />
+    <div class="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/30"></div>
+  </div>
+
+  <Footer />
+</Layout>
