@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ValueProps from '../components/ValueProps.astro';
+import Testimonials from '../components/Testimonials.astro';
+import SignupForm from '../components/SignupForm.astro';
+import Footer from '../components/Footer.astro';
+
+const leafValueProps = [
+  {
+    icon: '💰',
+    title: 'Transparent Pricing',
+    feature: '$190 minimum includes first man-hour + dump fee.',
+    benefit: 'No surprise bills. Additional time is $75/man-hour, and the total is always based on actual time spent — nothing more.',
+  },
+  {
+    icon: '🏡',
+    title: 'Full-Service Cleanup',
+    feature: 'Front yard, backyard, and all landscape beds.',
+    benefit: 'We don\'t just blow leaves around. Our standard service covers your entire property so nothing gets missed.',
+  },
+  {
+    icon: '⚡',
+    title: 'Same-Day Availability',
+    feature: 'Fast turnaround when you need it.',
+    benefit: 'We know leaves don\'t wait. We frequently fit jobs in same-day so your yard doesn\'t sit buried all week.',
+  },
+  {
+    icon: '🚛',
+    title: 'Curbside Pickup Option',
+    feature: 'Starting at $85 for piles up to 20 feet.',
+    benefit: 'Already raked your leaves to the curb? We\'ll haul them away for you at a lower price point.',
+  },
+  {
+    icon: '✅',
+    title: 'No Half-Done Jobs',
+    feature: 'We finish what we start, every time.',
+    benefit: 'We won\'t leave you with a big pile of leaves in the middle of your yard. The job isn\'t done until your property is clean.',
+  },
+  {
+    icon: '🎯',
+    title: 'Flexible Scope',
+    feature: 'Choose which areas we service.',
+    benefit: 'On a budget? We can focus on just the front yard or skip the beds — you choose the scope that works for you.',
+  },
+];
+
+const leafTestimonials = [
+  {
+    quote: 'The crew did a great job! They were able to come within the same day of the request and had all of the leaves cleaned up in less than 30 minutes or so! Very appreciative of their work.',
+    name: 'Logan J.',
+    stars: 5,
+  },
+  {
+    quote: 'Prompt response and very punctual in completing the work requested. Cayden was extremely helpful in squeezing the job in on the Holiday week of Thanksgiving. Highly recommend the lawn service!!!',
+    name: 'John Peter S.',
+    stars: 5,
+  },
+];
+---
+
+<Layout
+  title="Leaf Removal Service | Sommer Lawn & Landscape"
+  description="Professional leaf removal for your yard. Full-service cleanup or curbside pickup — fast, thorough, and hassle-free."
+>
+  <Hero
+    image="/leaf-truck.jpeg"
+    imagePosition="object-center"
+    imageAlt="Sommer Lawn truck loaded with leaves after a cleanup"
+    headline="Leaf Removal"
+    subtitle="Full-service cleanup or curbside pickup — fast, thorough, and hassle-free. We handle the leaves so you don't have to."
+  />
+
+  <ValueProps
+    title="Why Choose Sommer Lawn?"
+    subtitle="Transparent pricing, flexible options, and a crew that gets the job done right."
+    items={leafValueProps}
+  />
+
+  <!-- Logo break -->
+  <div class="bg-white flex items-center justify-center py-10 px-6">
+    <img src="/SommerLogo_Color_White_Stripe (3).png" alt="Sommer Lawn & Landscape logo" class="max-w-md w-full h-auto" />
+  </div>
+
+  <Testimonials testimonials={leafTestimonials} />
+
+  <SignupForm />
+
+  <!-- Full-width photo break -->
+  <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+    <img src="/curbside.png" alt="Sommer Lawn curbside leaf pickup" class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/30"></div>
+  </div>
+
+  <Footer />
+</Layout>
