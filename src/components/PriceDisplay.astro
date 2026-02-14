@@ -1,0 +1,84 @@
+---
+---
+
+<section id="price-display" class="hidden px-6 py-16 bg-dark">
+  <p class="text-gray-400 text-lg mb-8 text-center">Your personalized mowing prices</p>
+
+  <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Weekly card -->
+    <div id="price-weekly" class="hidden text-center border border-smurf/30 rounded-2xl px-8 py-10 shadow-[0_0_30px_rgba(0,174,239,0.1)]">
+      <p class="text-gray-400 text-sm uppercase tracking-wide mb-3">Weekly</p>
+      <div class="mb-3">
+        <span class="text-smurf text-2xl font-semibold align-top">$</span>
+        <span id="price-weekly-amount" class="text-smurf text-6xl md:text-7xl font-bold"></span>
+        <span class="text-gray-400 text-lg">/week</span>
+      </div>
+      <p class="text-gray-500 text-sm mb-6">
+        Mowing + trimming + edging + blowing off all concrete surfaces
+      </p>
+      <a
+        href="#signup"
+        class="inline-block bg-smurf hover:bg-smurf-dark text-white font-semibold text-lg px-8 py-4 rounded-lg transition-colors"
+      >
+        Get on the Schedule
+      </a>
+    </div>
+
+    <!-- Bi-weekly card -->
+    <div id="price-biweekly" class="hidden text-center border border-smurf/30 rounded-2xl px-8 py-10 shadow-[0_0_30px_rgba(0,174,239,0.1)]">
+      <p class="text-gray-400 text-sm uppercase tracking-wide mb-3">Bi-Weekly</p>
+      <div class="mb-3">
+        <span class="text-smurf text-2xl font-semibold align-top">$</span>
+        <span id="price-biweekly-amount" class="text-smurf text-6xl md:text-7xl font-bold"></span>
+        <span class="text-gray-400 text-lg">/visit</span>
+      </div>
+      <p class="text-gray-500 text-sm mb-6">
+        Mowing + trimming + edging + blowing off all concrete surfaces
+      </p>
+      <a
+        href="#signup"
+        class="inline-block bg-smurf hover:bg-smurf-dark text-white font-semibold text-lg px-8 py-4 rounded-lg transition-colors"
+      >
+        Get on the Schedule
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  function formatPrice(raw: string): string | null {
+    const sanitized = raw.replace(/[^\d.]/g, '');
+    if (!sanitized || isNaN(Number(sanitized))) return null;
+    return sanitized.includes('.') ? parseFloat(sanitized).toFixed(2) : sanitized;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const weeklyRaw = params.get('price');
+  const biweeklyRaw = params.get('biweekly');
+
+  const weekly = weeklyRaw ? formatPrice(weeklyRaw) : null;
+  const biweekly = biweeklyRaw ? formatPrice(biweeklyRaw) : null;
+
+  if (weekly || biweekly) {
+    const section = document.getElementById('price-display');
+    section?.classList.remove('hidden');
+
+    if (weekly) {
+      const card = document.getElementById('price-weekly');
+      const amount = document.getElementById('price-weekly-amount');
+      if (card && amount) {
+        amount.textContent = weekly;
+        card.classList.remove('hidden');
+      }
+    }
+
+    if (biweekly) {
+      const card = document.getElementById('price-biweekly');
+      const amount = document.getElementById('price-biweekly-amount');
+      if (card && amount) {
+        amount.textContent = biweekly;
+        card.classList.remove('hidden');
+      }
+    }
+  }
+</script>
