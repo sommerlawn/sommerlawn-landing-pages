@@ -3,10 +3,12 @@ interface Props {
   image?: string;
   imagePosition?: string;
   imageAlt?: string;
+  video?: string;
   headline?: string;
   highlightText?: string;
   subtitle?: string;
   ctaText?: string;
+  prefixText?: string;
   ctaHref?: string;
 }
 
@@ -14,24 +16,35 @@ const {
   image = '/normal-mower.png',
   imagePosition = 'object-[30%_top]',
   imageAlt = 'Sommer Lawn mowing crew at work',
+  video,
   headline = 'Mowing Service',
   highlightText = "Sommer Lawn's",
   subtitle = 'Weekly or bi-weekly — same crew, same quality, zero hassle. Mowing, trimming, edging, and blowing off all concrete surfaces.',
+  prefixText = 'Sign Up for',
   ctaText = 'Sign Up',
   ctaHref = '#signup',
 } = Astro.props;
 ---
 
 <section class="relative min-h-[70vh] flex items-center justify-center px-6 py-20">
-  <!-- Hero background image -->
+  <!-- Hero background -->
   <div class="absolute inset-0">
-    <img src={image} alt={imageAlt} class={`w-full h-full object-cover ${imagePosition}`} />
+    {video ? (
+      <>
+        <img src={image} alt={imageAlt} class={`absolute inset-0 w-full h-full object-cover ${imagePosition}`} />
+        <video autoplay muted loop playsinline class={`absolute inset-0 w-full h-full object-cover ${imagePosition}`}>
+          <source src={video} type="video/mp4" />
+        </video>
+      </>
+    ) : (
+      <img src={image} alt={imageAlt} class={`w-full h-full object-cover ${imagePosition}`} />
+    )}
     <div class="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/50 to-dark"></div>
   </div>
 
   <div class="relative z-10 max-w-3xl mx-auto text-center">
     <h1 id="hero-heading" class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-      <span id="hero-prefix">Sign Up for</span><br />
+      {prefixText && <span id="hero-prefix">{prefixText} </span>}
       <span class="text-smurf">{highlightText}</span> {headline}
     </h1>
 
