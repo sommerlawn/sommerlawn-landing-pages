@@ -65,11 +65,57 @@ const leafTestimonials = [
 >
   <Hero
     image="/leaf-truck.jpeg"
+    video="/leaf-b-roll.mov"
     imagePosition="object-center"
     imageAlt="Sommer Lawn truck loaded with leaves after a cleanup"
     headline="Leaf Removal"
     subtitle="Full-service cleanup or curbside pickup — fast, thorough, and hassle-free. We handle the leaves so you don't have to."
   />
+
+  <!-- Service Options -->
+  <section class="bg-dark-card px-6 py-20">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Your Options</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-dark border border-dark-border rounded-xl p-8">
+          <div class="text-4xl mb-4">🏡</div>
+          <h3 class="text-xl font-bold text-white mb-4">Full-Service Leaf Removal</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li class="flex items-start gap-2">
+              <span class="text-smurf-blue mt-1">✓</span>
+              We blow out all landscape beds into the yard
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-smurf-blue mt-1">✓</span>
+              Bag every leaf on the property
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-smurf-blue mt-1">✓</span>
+              Haul everything away — yard left spotless
+            </li>
+          </ul>
+        </div>
+        <div class="bg-dark border border-dark-border rounded-xl p-8">
+          <div class="text-4xl mb-4">🚛</div>
+          <h3 class="text-xl font-bold text-white mb-4">Curbside Pickup</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li class="flex items-start gap-2">
+              <span class="text-smurf-blue mt-1">✓</span>
+              You blow or rake leaves to the curb
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-smurf-blue mt-1">✓</span>
+              We vacuum them up with our truck
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-smurf-blue mt-1">✓</span>
+              Budget-friendly if you want to do some work yourself
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <ValueProps
     title="Why Choose Sommer Lawn?"
@@ -77,9 +123,10 @@ const leafTestimonials = [
     items={leafValueProps}
   />
 
-  <!-- Logo break -->
-  <div class="bg-white flex items-center justify-center py-10 px-6">
-    <img src="/SommerLogo_Color_White_Stripe (3).png" alt="Sommer Lawn & Landscape logo" class="max-w-md w-full h-auto" />
+  <!-- Photo break -->
+  <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+    <img src="/leaf-truck.jpeg" alt="Sommer Lawn truck loaded with leaves after a cleanup" class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/30"></div>
   </div>
 
   <Testimonials testimonials={leafTestimonials} />
