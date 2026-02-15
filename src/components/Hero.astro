@@ -52,9 +52,9 @@ const {
   const params = new URLSearchParams(window.location.search);
   const name = params.get('first');
   if (name) {
-    const prefix = document.getElementById('hero-prefix');
-    if (prefix) {
-      prefix.textContent = `Hey ${name}, consider`;
+    const heading = document.getElementById('hero-heading');
+    if (heading) {
+      heading.innerHTML = `Hey ${name}! Check out your personalized<br />Mowing quote from <span class="text-smurf">Sommer Lawn</span>.`;
     }
   }
 </script>
