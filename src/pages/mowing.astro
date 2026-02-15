@@ -12,17 +12,17 @@ import Footer from '../components/Footer.astro';
   title="Add Mowing Service | Sommer Lawn & Landscape"
   description="Add weekly or bi-weekly mowing to your Sommer Lawn services. Same crew, same quality, zero hassle."
 >
-  <Hero />
+  <Hero video="/mowing-b-roll.mp4" />
   <PriceDisplay />
   <ValueProps />
 
   <!-- Full-width photo break -->
   <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden">
-    <img src="/truck+mower.jpeg" alt="Sommer Lawn & Landscape branded truck with mower" class="w-full h-full object-cover object-center" />
+    <img src="/normal-mower.png" alt="Sommer Lawn mowing crew at work" class="w-full h-full object-cover object-[30%_top]" />
     <div class="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/30"></div>
   </div>
 
-<Testimonials />
+  <Testimonials />
 
   <SignupForm />
 
@@ -31,6 +31,14 @@ import Footer from '../components/Footer.astro';
     <img src="/mower-close-up.png" alt="Close-up of Sommer Lawn mower on fresh-cut grass" class="w-full h-full object-cover object-top" />
     <div class="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/30"></div>
   </div>
+
+  <!-- More Services -->
+  <section class="bg-dark-card px-6 py-16 text-center">
+    <p class="text-gray-400 text-lg mb-4">We do more than mowing.</p>
+    <a href="/services" class="text-smurf font-semibold text-lg hover:text-smurf-light transition-colors">
+      View All Services &rarr;
+    </a>
+  </section>
 
   <Footer />
 </Layout>
