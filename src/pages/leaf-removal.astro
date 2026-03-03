@@ -149,4 +149,62 @@ const leafTestimonials = [
   </section>
 
   <Footer />
+
+  <!-- Spring Promo Popup (only shown when URL params present) -->
+  <div id="promo-popup" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="promo-backdrop"></div>
+    <div class="relative bg-dark-card border border-smurf-blue/40 rounded-2xl p-6 max-w-sm w-full shadow-2xl shadow-smurf-blue/10 text-center">
+      <button id="promo-close" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors text-xl leading-none">&times;</button>
+      <div class="text-5xl mb-3">🍃</div>
+      <div class="inline-block bg-smurf-blue/20 border border-smurf-blue/40 text-smurf text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
+        Limited Time Offer
+      </div>
+      <h2 class="text-3xl font-extrabold text-white mb-2">$25 Off</h2>
+      <p class="text-gray-300 text-sm mb-5">Spring promo — use this code when you book your leaf removal service.</p>
+      <div class="bg-dark border border-dark-border rounded-xl px-6 py-4 mb-5">
+        <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">Promo Code</p>
+        <p class="text-xl font-mono font-bold text-smurf tracking-wider">LEAF-SPRING-2026</p>
+        <p class="text-xs text-gray-500 mt-2">Expires April 1, 2026</p>
+      </div>
+      <button id="promo-dismiss" class="w-full bg-smurf-blue hover:bg-smurf-blue/80 text-white font-bold py-3 rounded-xl transition-colors">
+        Got it — save my $25!
+      </button>
+    </div>
+  </div>
+
+  <!-- Minimized promo tab -->
+  <button
+    id="promo-tab"
+    class="fixed bottom-4 left-4 z-50 hidden items-center gap-2 bg-dark-card border border-smurf-blue/40 text-white text-sm font-bold px-4 py-3 rounded-2xl shadow-lg shadow-smurf-blue/10 active:scale-95 transition-transform"
+  >
+    <span class="text-lg">🍃</span>
+    <span>$25 off — tap to view</span>
+  </button>
+
+  <script>
+    const hasParams = window.location.search.length > 1;
+    if (hasParams) {
+      const popup = document.getElementById('promo-popup');
+      const tab = document.getElementById('promo-tab');
+
+      const open = () => {
+        popup?.classList.remove('hidden');
+        tab?.classList.remove('flex');
+        tab?.classList.add('hidden');
+      };
+
+      const minimize = () => {
+        popup?.classList.add('hidden');
+        tab?.classList.remove('hidden');
+        tab?.classList.add('flex');
+      };
+
+      setTimeout(() => popup?.classList.remove('hidden'), 2500);
+
+      document.getElementById('promo-close')?.addEventListener('click', minimize);
+      document.getElementById('promo-dismiss')?.addEventListener('click', minimize);
+      document.getElementById('promo-backdrop')?.addEventListener('click', minimize);
+      tab?.addEventListener('click', open);
+    }
+  </script>
 </Layout>
