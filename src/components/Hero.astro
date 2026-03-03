@@ -10,6 +10,7 @@ interface Props {
   ctaText?: string;
   prefixText?: string;
   ctaHref?: string;
+  personalizedHeadline?: string;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   prefixText = 'Sign Up for',
   ctaText = 'Sign Up',
   ctaHref = '#signup',
+  personalizedHeadline = `Hey {name}! Check out your personalized<br />Mowing price from <span class="text-smurf">Sommer Lawn</span>.`,
 } = Astro.props;
 ---
 
@@ -61,13 +63,13 @@ const {
   </div>
 </section>
 
-<script>
+<script is:inline define:vars={{ personalizedHeadline }}>
   const params = new URLSearchParams(window.location.search);
   const name = params.get('first');
   if (name) {
     const heading = document.getElementById('hero-heading');
     if (heading) {
-      heading.innerHTML = `Hey ${name}! Check out your personalized<br />Mowing price from <span class="text-smurf">Sommer Lawn</span>.`;
+      heading.innerHTML = personalizedHeadline.replace('{name}', name);
     }
   }
 </script>
