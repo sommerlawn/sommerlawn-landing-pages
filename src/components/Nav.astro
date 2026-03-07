@@ -1,0 +1,41 @@
+---
+---
+
+<header id="site-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a id="nav-logo" href="/" class="flex items-center rounded-lg px-3 py-1.5 transition-all duration-300">
+      <img src="/logo.png" alt="Sommer Lawn & Landscape" class="h-12 w-auto" />
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="/#services" class="text-white/70 hover:text-white text-sm transition-colors">Services</a>
+      <a href="/services" class="text-white/70 hover:text-white text-sm transition-colors">All Services</a>
+      <a href="/#contact" class="text-white/70 hover:text-white text-sm transition-colors">Contact</a>
+    </nav>
+
+    <a
+      href="sms:+19132257717"
+      class="bg-smurf hover:bg-smurf-dark text-white font-semibold text-sm px-5 py-2.5 rounded-lg transition-colors"
+    >
+      Text Us
+    </a>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById('site-nav');
+  const logo = document.getElementById('nav-logo');
+
+  function updateNav() {
+    if (window.scrollY > 40) {
+      nav?.classList.add('bg-dark/95', 'backdrop-blur', 'border-b', 'border-dark-border', 'shadow-lg');
+      logo?.classList.add('bg-white');
+    } else {
+      nav?.classList.remove('bg-dark/95', 'backdrop-blur', 'border-b', 'border-dark-border', 'shadow-lg');
+      logo?.classList.remove('bg-white');
+    }
+  }
+
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
+</script>
