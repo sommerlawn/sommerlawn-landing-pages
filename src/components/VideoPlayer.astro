@@ -1,0 +1,256 @@
+---
+interface Chapter {
+  title: string;
+  start: number; // seconds
+}
+
+interface Props {
+  src: string;
+  poster?: string;
+  chapters: Chapter[];
+}
+
+const { src, poster, chapters } = Astro.props;
+const id = `vp-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black" id={id}>
+  <video
+    id={`${id}-vid`}
+    playsinline
+    preload="none"
+    class="w-full h-full object-cover cursor-pointer"
+    poster={poster}
+  >
+    <source src={src} type="video/mp4" />
+  </video>
+
+  <!-- Big play overlay -->
+  <div id={`${id}-overlay`} class="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <div id={`${id}-playbtn`} class="w-16 h-16 rounded-full bg-black/60 flex items-center justify-center transition-opacity duration-200">
+      <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Controls bar -->
+  <div id={`${id}-controls`} class="absolute bottom-0 left-0 right-0 px-3 pb-3 pt-8 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300">
+    <!-- Chapter tooltip -->
+    <div id={`${id}-tooltip`} class="absolute -top-1 left-0 text-xs text-white bg-black/80 px-2 py-1 rounded pointer-events-none opacity-0 transition-opacity duration-150 whitespace-nowrap" style="transform: translateY(-100%)">
+    </div>
+
+    <!-- Progress bar -->
+    <div
+      id={`${id}-progress`}
+      class="relative w-full mb-2 cursor-pointer"
+      style="height: 18px; display: flex; align-items: center;"
+      role="slider"
+      aria-label="Video progress"
+      tabindex="0"
+    >
+      <div id={`${id}-track`} class="absolute inset-x-0 flex gap-[2px]" style="top: 50%; transform: translateY(-50%); height: 4px;">
+        <!-- Chapter segments injected by JS -->
+      </div>
+    </div>
+
+    <!-- Controls row -->
+    <div class="flex items-center gap-3">
+      <!-- Play/pause -->
+      <button id={`${id}-pp`} class="text-white hover:text-smurf transition-colors flex-shrink-0" aria-label="Play/Pause">
+        <svg id={`${id}-play-icon`} class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg id={`${id}-pause-icon`} class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+      </button>
+
+      <!-- Time -->
+      <span id={`${id}-time`} class="text-white text-xs tabular-nums flex-shrink-0">0:00 / 0:00</span>
+
+      <div class="flex-1"></div>
+
+      <!-- Mute -->
+      <button id={`${id}-mute`} class="text-white hover:text-smurf transition-colors flex-shrink-0" aria-label="Mute/Unmute">
+        <svg id={`${id}-vol-icon`} class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+        </svg>
+        <svg id={`${id}-mute-icon`} class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ id, chapters, src }}>
+  (function () {
+    const vid = document.getElementById(`${id}-vid`);
+    const overlay = document.getElementById(`${id}-overlay`);
+    const playbtn = document.getElementById(`${id}-playbtn`);
+    const controls = document.getElementById(`${id}-controls`);
+    const track = document.getElementById(`${id}-track`);
+    const progressBar = document.getElementById(`${id}-progress`);
+    const tooltip = document.getElementById(`${id}-tooltip`);
+    const ppBtn = document.getElementById(`${id}-pp`);
+    const playIcon = document.getElementById(`${id}-play-icon`);
+    const pauseIcon = document.getElementById(`${id}-pause-icon`);
+    const timeEl = document.getElementById(`${id}-time`);
+    const muteBtn = document.getElementById(`${id}-mute`);
+    const volIcon = document.getElementById(`${id}-vol-icon`);
+    const muteIcon = document.getElementById(`${id}-mute-icon`);
+
+    function fmt(s) {
+      s = Math.floor(s);
+      const m = Math.floor(s / 60);
+      const sec = String(s % 60).padStart(2, '0');
+      return `${m}:${sec}`;
+    }
+
+    function buildSegments() {
+      const dur = vid.duration;
+      if (!dur || isNaN(dur)) return;
+      track.innerHTML = '';
+      chapters.forEach((ch, i) => {
+        const next = chapters[i + 1];
+        const start = ch.start;
+        const end = next ? next.start : dur;
+        const pct = ((end - start) / dur * 100).toFixed(4);
+
+        const seg = document.createElement('div');
+        seg.className = 'relative flex-shrink-0 rounded-sm overflow-hidden bg-white/30';
+        seg.style.width = `${pct}%`;
+        seg.style.height = '100%';
+
+        const fill = document.createElement('div');
+        fill.className = 'absolute inset-y-0 left-0 bg-smurf transition-none';
+        fill.style.width = '0%';
+        fill.dataset.fill = '';
+        seg.appendChild(fill);
+
+        seg.addEventListener('mouseenter', () => {
+          const rect = seg.getBoundingClientRect();
+          const barRect = progressBar.getBoundingClientRect();
+          const leftPct = ((rect.left - barRect.left) / barRect.width * 100).toFixed(2);
+          tooltip.style.left = `${leftPct}%`;
+          tooltip.textContent = ch.title;
+          tooltip.style.opacity = '1';
+        });
+        seg.addEventListener('mouseleave', () => {
+          tooltip.style.opacity = '0';
+        });
+
+        track.appendChild(seg);
+      });
+    }
+
+    function updateProgress() {
+      const dur = vid.duration;
+      if (!dur || isNaN(dur)) return;
+      const cur = vid.currentTime;
+      timeEl.textContent = `${fmt(cur)} / ${fmt(dur)}`;
+
+      const fills = track.querySelectorAll('[data-fill]');
+      chapters.forEach((ch, i) => {
+        const next = chapters[i + 1];
+        const segStart = ch.start;
+        const segEnd = next ? next.start : dur;
+        const segLen = segEnd - segStart;
+        let pct = 0;
+        if (cur >= segEnd) {
+          pct = 100;
+        } else if (cur > segStart) {
+          pct = ((cur - segStart) / segLen) * 100;
+        }
+        if (fills[i]) fills[i].style.width = `${pct}%`;
+      });
+    }
+
+    function seekFromEvent(e) {
+      const dur = vid.duration;
+      if (!dur || isNaN(dur)) return;
+      const rect = progressBar.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      vid.currentTime = ratio * dur;
+      updateProgress();
+    }
+
+    function togglePlay() {
+      if (vid.paused) vid.play();
+      else vid.pause();
+    }
+
+    // Play/pause state
+    vid.addEventListener('play', () => {
+      playIcon.classList.add('hidden');
+      pauseIcon.classList.remove('hidden');
+      playbtn.style.opacity = '0';
+    });
+    vid.addEventListener('pause', () => {
+      playIcon.classList.remove('hidden');
+      pauseIcon.classList.add('hidden');
+      playbtn.style.opacity = '1';
+    });
+    vid.addEventListener('ended', () => {
+      playbtn.style.opacity = '1';
+    });
+
+    vid.addEventListener('loadedmetadata', () => {
+      buildSegments();
+      updateProgress();
+    });
+    vid.addEventListener('timeupdate', updateProgress);
+
+    // Click video to toggle play
+    vid.addEventListener('click', togglePlay);
+    ppBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
+
+    // Progress bar interaction
+    let dragging = false;
+    progressBar.addEventListener('mousedown', (e) => { dragging = true; seekFromEvent(e); });
+    window.addEventListener('mousemove', (e) => { if (dragging) seekFromEvent(e); });
+    window.addEventListener('mouseup', () => { dragging = false; });
+
+    progressBar.addEventListener('touchstart', (e) => { e.preventDefault(); seekFromEvent(e); }, { passive: false });
+    progressBar.addEventListener('touchmove', (e) => { e.preventDefault(); seekFromEvent(e); }, { passive: false });
+
+    // Keyboard seek
+    progressBar.addEventListener('keydown', (e) => {
+      const dur = vid.duration;
+      if (!dur) return;
+      if (e.key === 'ArrowRight') vid.currentTime = Math.min(dur, vid.currentTime + 5);
+      if (e.key === 'ArrowLeft') vid.currentTime = Math.max(0, vid.currentTime - 5);
+    });
+
+    // Mute
+    muteBtn.addEventListener('click', () => {
+      vid.muted = !vid.muted;
+      volIcon.classList.toggle('hidden', vid.muted);
+      muteIcon.classList.toggle('hidden', !vid.muted);
+    });
+
+    // Auto-hide controls
+    let hideTimer;
+    const container = document.getElementById(id);
+    function showControls() {
+      controls.style.opacity = '1';
+      clearTimeout(hideTimer);
+      if (!vid.paused) {
+        hideTimer = setTimeout(() => { controls.style.opacity = '0'; }, 2500);
+      }
+    }
+    container.addEventListener('mousemove', showControls);
+    container.addEventListener('touchstart', showControls, { passive: true });
+    vid.addEventListener('pause', () => {
+      clearTimeout(hideTimer);
+      controls.style.opacity = '1';
+    });
+  })();
+</script>
+
+<style>
+  /* Smurf blue for Tailwind class used in JS */
+  .bg-smurf { background-color: #00AEEF; }
+</style>
