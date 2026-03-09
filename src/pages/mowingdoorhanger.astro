@@ -6,6 +6,7 @@ import ValueProps from '../components/ValueProps.astro';
 import Testimonials from '../components/Testimonials.astro';
 import SignupForm from '../components/SignupForm.astro';
 import Footer from '../components/Footer.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
 ---
 
 <Layout
@@ -30,26 +31,26 @@ import Footer from '../components/Footer.astro';
       <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">2 Free Mows When You Sign Up</h2>
       <p class="text-gray-400 text-lg mb-12">Sign up for recurring mowing service and we'll take care of your 2nd and 4th mows — completely free. No gimmicks, no contracts.</p>
 
-      <div class="grid grid-cols-4 gap-3 mb-10">
-        <div class="bg-dark-card border border-dark-border rounded-2xl p-5">
-          <p class="text-gray-400 font-bold text-xs uppercase tracking-widest mb-2">Mow 1</p>
-          <p class="text-2xl font-extrabold text-white">Paid</p>
-          <p class="text-gray-500 text-xs mt-1">Regular rate</p>
+      <div class="grid grid-cols-4 gap-2 sm:gap-3 mb-10">
+        <div class="bg-dark-card border border-dark-border rounded-xl sm:rounded-2xl p-3 sm:p-5">
+          <p class="text-gray-400 font-bold text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-widest mb-1 sm:mb-2">Mow 1</p>
+          <p class="text-lg sm:text-2xl font-extrabold text-white">Paid</p>
+          <p class="text-gray-500 text-[10px] sm:text-xs mt-1 leading-tight">Regular rate</p>
         </div>
-        <div class="bg-dark-card border border-smurf/40 rounded-2xl p-5 ring-1 ring-smurf/20">
-          <p class="text-smurf font-bold text-xs uppercase tracking-widest mb-2">Mow 2</p>
-          <p class="text-2xl font-extrabold text-white">FREE</p>
-          <p class="text-gray-500 text-xs mt-1">On us</p>
+        <div class="bg-dark-card border border-smurf/40 rounded-xl sm:rounded-2xl p-3 sm:p-5 ring-1 ring-smurf/20">
+          <p class="text-smurf font-bold text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-widest mb-1 sm:mb-2">Mow 2</p>
+          <p class="text-lg sm:text-2xl font-extrabold text-white">FREE</p>
+          <p class="text-gray-500 text-[10px] sm:text-xs mt-1 leading-tight">On us</p>
         </div>
-        <div class="bg-dark-card border border-dark-border rounded-2xl p-5">
-          <p class="text-gray-400 font-bold text-xs uppercase tracking-widest mb-2">Mow 3</p>
-          <p class="text-2xl font-extrabold text-white">Paid</p>
-          <p class="text-gray-500 text-xs mt-1">Regular rate</p>
+        <div class="bg-dark-card border border-dark-border rounded-xl sm:rounded-2xl p-3 sm:p-5">
+          <p class="text-gray-400 font-bold text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-widest mb-1 sm:mb-2">Mow 3</p>
+          <p class="text-lg sm:text-2xl font-extrabold text-white">Paid</p>
+          <p class="text-gray-500 text-[10px] sm:text-xs mt-1 leading-tight">Regular rate</p>
         </div>
-        <div class="bg-dark-card border border-smurf/40 rounded-2xl p-5 ring-1 ring-smurf/20">
-          <p class="text-smurf font-bold text-xs uppercase tracking-widest mb-2">Mow 4</p>
-          <p class="text-2xl font-extrabold text-white">FREE</p>
-          <p class="text-gray-500 text-xs mt-1">On us</p>
+        <div class="bg-dark-card border border-smurf/40 rounded-xl sm:rounded-2xl p-3 sm:p-5 ring-1 ring-smurf/20">
+          <p class="text-smurf font-bold text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-widest mb-1 sm:mb-2">Mow 4</p>
+          <p class="text-lg sm:text-2xl font-extrabold text-white">FREE</p>
+          <p class="text-gray-500 text-[10px] sm:text-xs mt-1 leading-tight">On us</p>
         </div>
       </div>
 
@@ -71,17 +72,15 @@ import Footer from '../components/Footer.astro';
         <p class="text-gray-400 text-sm mb-1">Hear it straight from us</p>
         <p class="text-white font-bold text-xl mb-2">A Message from the Owner <span class="text-smurf text-sm font-bold tracking-widest">DRAFT VIDEO</span></p>
         <div class="animate-bounce text-smurf text-2xl mb-4">↓</div>
-        <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-dark border border-dark-border">
-          <!-- Swap src for the real video file when ready -->
-          <video
-            controls
-            playsinline
-            preload="none"
-            class="w-full h-full object-cover"
-          >
-            <source src="/doorhanger-vsl.mov" type="video/mp4" />
-          </video>
-        </div>
+        <VideoPlayer
+          src="/doorhanger-vsl.mov"
+          chapters={[
+            { title: "Introduction", start: 0 },
+            { title: "The Offer", start: 15 },
+            { title: "About Sommer Lawn", start: 45 },
+            { title: "Get Started", start: 75 },
+          ]}
+        />
       </div>
     </div>
   </section>
