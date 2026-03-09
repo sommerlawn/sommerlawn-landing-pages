@@ -1,0 +1,199 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import PriceDisplay from '../components/PriceDisplay.astro';
+import ValueProps from '../components/ValueProps.astro';
+import Testimonials from '../components/Testimonials.astro';
+import SignupForm from '../components/SignupForm.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Mowing Service | Sommer Lawn & Landscape"
+  description="You got our flyer — here's the deal. Weekly or bi-weekly mowing in Johnson County, KS. Same crew, honest pricing, zero hassle."
+>
+  <Hero
+    video="/mowing-b-roll.mp4"
+    prefixText="You Found Us —"
+    highlightText="Sommer Lawn"
+    headline="Mowing Service"
+    subtitle="We left a flyer on your door because we work in your neighborhood. Like what you saw? Click the button to sign up."
+    ctaText="Sign Up"
+    ctaHref="#signup"
+  />
+  <!-- Door Hanger Offer -->
+  <section id="offer" class="bg-dark px-6 py-20">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="inline-block bg-smurf/20 border border-smurf/40 text-smurf text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
+        Door Hanger Special
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">2 Free Mows When You Sign Up</h2>
+      <p class="text-gray-400 text-lg mb-12">Sign up for recurring mowing service and we'll take care of your 2nd and 4th mows — completely free. No gimmicks, no contracts.</p>
+
+      <div class="grid grid-cols-4 gap-3 mb-10">
+        <div class="bg-dark-card border border-dark-border rounded-2xl p-5">
+          <p class="text-gray-400 font-bold text-xs uppercase tracking-widest mb-2">Mow 1</p>
+          <p class="text-2xl font-extrabold text-white">Paid</p>
+          <p class="text-gray-500 text-xs mt-1">Regular rate</p>
+        </div>
+        <div class="bg-dark-card border border-smurf/40 rounded-2xl p-5 ring-1 ring-smurf/20">
+          <p class="text-smurf font-bold text-xs uppercase tracking-widest mb-2">Mow 2</p>
+          <p class="text-2xl font-extrabold text-white">FREE</p>
+          <p class="text-gray-500 text-xs mt-1">On us</p>
+        </div>
+        <div class="bg-dark-card border border-dark-border rounded-2xl p-5">
+          <p class="text-gray-400 font-bold text-xs uppercase tracking-widest mb-2">Mow 3</p>
+          <p class="text-2xl font-extrabold text-white">Paid</p>
+          <p class="text-gray-500 text-xs mt-1">Regular rate</p>
+        </div>
+        <div class="bg-dark-card border border-smurf/40 rounded-2xl p-5 ring-1 ring-smurf/20">
+          <p class="text-smurf font-bold text-xs uppercase tracking-widest mb-2">Mow 4</p>
+          <p class="text-2xl font-extrabold text-white">FREE</p>
+          <p class="text-gray-500 text-xs mt-1">On us</p>
+        </div>
+      </div>
+
+      <ul class="text-gray-500 text-sm mb-8 inline-block text-left space-y-1">
+        <li class="flex items-start gap-2"><span>•</span>Valid for new recurring mowing customers</li>
+        <li class="flex items-start gap-2"><span>•</span>Applies to standard weekly or bi-weekly service</li>
+        <li class="flex items-start gap-2"><span>•</span>An overgrown fee may apply on the initial service if the lawn requires extra work</li>
+        <li class="flex items-start gap-2"><span>•</span>Offer expires 7 days after the door hanger was placed</li>
+      </ul>
+      <a
+        href="#signup"
+        class="inline-block bg-smurf hover:bg-smurf-dark text-white font-semibold text-lg px-8 py-4 rounded-lg transition-colors"
+      >
+        Claim This Offer
+      </a>
+
+      <!-- Arrow + VSL -->
+      <div class="mt-12">
+        <p class="text-gray-400 text-sm mb-1">Hear it straight from us</p>
+        <p class="text-white font-bold text-xl mb-2">A Message from the Owner <span class="text-smurf text-sm font-bold tracking-widest">DRAFT VIDEO</span></p>
+        <div class="animate-bounce text-smurf text-2xl mb-4">↓</div>
+        <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-dark border border-dark-border">
+          <!-- Swap src for the real video file when ready -->
+          <video
+            controls
+            playsinline
+            preload="none"
+            class="w-full h-full object-cover"
+          >
+            <source src="/doorhanger-vsl.mov" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PriceDisplay />
+  <ValueProps title="Why Choose Us?" subtitle="We're already in your area so we'd love to earn your business!" />
+
+  <div class="bg-dark-card px-6 pb-16 text-center">
+    <a href="/" class="inline-block border border-dark-border hover:border-smurf/50 text-gray-300 hover:text-white font-semibold px-8 py-4 rounded-lg transition-colors">
+      Learn More About Sommer Lawn &rarr;
+    </a>
+  </div>
+
+  <!-- Full-width photo break -->
+  <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+    <img src="/normal-mower.png" alt="Sommer Lawn mowing crew at work" class="w-full h-full object-cover object-[30%_top]" />
+    <div class="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/30"></div>
+  </div>
+
+  <Testimonials />
+
+  <SignupForm />
+
+  <!-- Full-width photo break -->
+  <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+    <img src="/mower-close-up.png" alt="Close-up of Sommer Lawn mower on fresh-cut grass" class="w-full h-full object-cover object-top" />
+    <div class="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/30"></div>
+  </div>
+
+  <!-- Text CTA -->
+  <section class="bg-dark px-6 py-20">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Have Questions? Just Text Us.</h2>
+      <p class="text-gray-400 text-lg mb-10">No pressure, no sales pitch — just a quick conversation. We'll give you a straight answer and a fair price.</p>
+      <a
+        href="sms:+19132257717"
+        class="inline-flex items-center gap-2 bg-smurf hover:bg-smurf-dark text-white font-semibold text-lg px-8 py-4 rounded-lg transition-colors"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+        Text Us to Learn More
+      </a>
+    </div>
+  </section>
+
+  <!-- More Services -->
+  <section class="bg-dark-card px-6 py-16 text-center">
+    <p class="text-gray-400 text-lg mb-4">We do more than mowing.</p>
+    <a href="/services" class="text-smurf font-semibold text-lg hover:text-smurf-light transition-colors">
+      View All Services &rarr;
+    </a>
+  </section>
+
+  <Footer />
+
+  <!-- Door Hanger Popup -->
+  <div id="promo-popup" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="promo-backdrop"></div>
+    <div class="relative bg-dark-card border border-smurf/40 rounded-2xl p-6 max-w-sm w-full shadow-2xl shadow-smurf/10 text-center">
+      <button id="promo-close" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors text-xl leading-none">&times;</button>
+      <div class="text-5xl mb-3">🏡</div>
+      <div class="inline-block bg-smurf/20 border border-smurf/40 text-smurf text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
+        Door Hanger Special
+      </div>
+      <h2 class="text-2xl font-extrabold text-white mb-2">Just got our door hanger?</h2>
+      <p class="text-gray-300 text-sm mb-5">We're running a neighborhood special — sign up for recurring mowing and get your 2nd and 4th mows free.</p>
+      <a
+        id="promo-learn-more"
+        href="#offer"
+        class="block w-full bg-smurf hover:bg-smurf-dark text-white font-bold py-3 rounded-xl transition-colors mb-3"
+      >
+        See the Full Offer
+      </a>
+      <button id="promo-dismiss" class="w-full text-gray-500 hover:text-gray-300 text-sm transition-colors py-1">
+        Maybe later
+      </button>
+    </div>
+  </div>
+
+  <!-- Minimized promo tab -->
+  <button
+    id="promo-tab"
+    class="fixed bottom-4 left-4 z-50 hidden items-center gap-2 bg-dark-card border border-smurf/40 text-white text-sm font-bold px-4 py-3 rounded-2xl shadow-lg shadow-smurf/10 active:scale-95 transition-transform"
+  >
+    <span class="text-lg">🏡</span>
+    <span>Door hanger special — tap to view</span>
+  </button>
+
+  <script>
+    const popup = document.getElementById('promo-popup');
+    const tab = document.getElementById('promo-tab');
+
+    const open = () => {
+      popup?.classList.remove('hidden');
+      tab?.classList.remove('flex');
+      tab?.classList.add('hidden');
+    };
+
+    const minimize = () => {
+      popup?.classList.add('hidden');
+      tab?.classList.remove('hidden');
+      tab?.classList.add('flex');
+    };
+
+    setTimeout(() => popup?.classList.remove('hidden'), 2500);
+
+    document.getElementById('promo-close')?.addEventListener('click', minimize);
+    document.getElementById('promo-dismiss')?.addEventListener('click', minimize);
+    document.getElementById('promo-backdrop')?.addEventListener('click', minimize);
+    document.getElementById('promo-learn-more')?.addEventListener('click', minimize);
+    tab?.addEventListener('click', open);
+  </script>
+
+</Layout>
