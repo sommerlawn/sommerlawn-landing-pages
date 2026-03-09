@@ -4,7 +4,6 @@ import Hero from '../components/Hero.astro';
 import PriceDisplay from '../components/PriceDisplay.astro';
 import ValueProps from '../components/ValueProps.astro';
 import Testimonials from '../components/Testimonials.astro';
-import SignupForm from '../components/SignupForm.astro';
 import Footer from '../components/Footer.astro';
 import VideoPlayer from '../components/VideoPlayer.astro';
 ---
@@ -54,7 +53,7 @@ import VideoPlayer from '../components/VideoPlayer.astro';
         </div>
       </div>
 
-      <ul class="text-gray-500 text-sm mb-8 inline-block text-left space-y-1">
+      <ul class="text-gray-500 text-sm mb-8 block mx-auto w-fit text-left space-y-1">
         <li class="flex items-start gap-2"><span>•</span>Valid for new recurring mowing customers</li>
         <li class="flex items-start gap-2"><span>•</span>Applies to standard weekly or bi-weekly service</li>
         <li class="flex items-start gap-2"><span>•</span>An overgrown fee may apply on the initial service if the lawn requires extra work</li>
@@ -102,7 +101,80 @@ import VideoPlayer from '../components/VideoPlayer.astro';
 
   <Testimonials />
 
-  <SignupForm />
+  <!-- Door Hanger Signup Form -->
+  <section id="signup" class="px-6 py-20 bg-dark-card">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Sign Up?</h2>
+      <p class="text-gray-400 mb-10">Fill out the form below and we'll get you set up.</p>
+      <div class="bg-smurf rounded-2xl p-6 md:p-10 mb-8">
+        <div id="zf_div_mCLF17HUPGM5KzNxLivRZJm9bhzJls5IYX1KCqT8lko"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      try {
+        var f = document.createElement("iframe");
+        var ifrmSrc = 'https://forms.zohopublic.com/sommerlawn/form/DoorHangerLandingForm/formperma/mCLF17HUPGM5KzNxLivRZJm9bhzJls5IYX1KCqT8lko?zf_rszfm=1';
+
+        try {
+          if (typeof ZFAdvLead != "undefined" && typeof zfutm_zfAdvLead != "undefined") {
+            for (var prmIdx = 0; prmIdx < ZFAdvLead.utmPNameArr.length; prmIdx++) {
+              var utmPm = ZFAdvLead.utmPNameArr[prmIdx];
+              utmPm = (ZFAdvLead.isSameDomian && (ZFAdvLead.utmcustPNameArr.indexOf(utmPm) == -1)) ? "zf_" + utmPm : utmPm;
+              var utmVal = zfutm_zfAdvLead.zfautm_gC_enc(ZFAdvLead.utmPNameArr[prmIdx]);
+              if (typeof utmVal !== "undefined" && utmVal != "") {
+                ifrmSrc += (ifrmSrc.indexOf('?') > 0 ? '&' : '?') + utmPm + '=' + utmVal;
+              }
+            }
+          }
+          if (typeof ZFLead !== "undefined" && typeof zfutm_zfLead !== "undefined") {
+            for (var prmIdx = 0; prmIdx < ZFLead.utmPNameArr.length; prmIdx++) {
+              var utmPm = ZFLead.utmPNameArr[prmIdx];
+              var utmVal = zfutm_zfLead.zfutm_gC_enc(ZFLead.utmPNameArr[prmIdx]);
+              if (typeof utmVal !== "undefined" && utmVal != "") {
+                ifrmSrc += (ifrmSrc.indexOf('?') > 0 ? '&' : '?') + utmPm + '=' + utmVal;
+              }
+            }
+          }
+        } catch(e) {}
+
+        f.src = ifrmSrc;
+        f.style.border = "none";
+        f.style.height = "2051px";
+        f.style.width = "90%";
+        f.style.display = "block";
+        f.style.margin = "0 auto";
+        f.style.transition = "all 0.5s ease";
+        f.setAttribute("aria-label", "Mowing Door Hanger Form");
+
+        var d = document.getElementById("zf_div_mCLF17HUPGM5KzNxLivRZJm9bhzJls5IYX1KCqT8lko");
+        d.appendChild(f);
+
+        window.addEventListener('message', function(event) {
+          var evntData = event.data;
+          if (evntData && evntData.constructor == String) {
+            var zf_ifrm_data = evntData.split("|");
+            if (zf_ifrm_data.length == 2 || zf_ifrm_data.length == 3) {
+              var zf_perma = zf_ifrm_data[0];
+              var zf_ifrm_ht_nw = (parseInt(zf_ifrm_data[1], 10) + 15) + "px";
+              var iframe = document.getElementById("zf_div_mCLF17HUPGM5KzNxLivRZJm9bhzJls5IYX1KCqT8lko").getElementsByTagName("iframe")[0];
+              if ((iframe.src).indexOf('formperma') > 0 && (iframe.src).indexOf(zf_perma) > 0) {
+                if (zf_ifrm_data.length == 3) {
+                  window.location.href = '/thank-you';
+                  return;
+                }
+                if (iframe.style.height != zf_ifrm_ht_nw) {
+                  iframe.style.height = zf_ifrm_ht_nw;
+                }
+              }
+            }
+          }
+        }, false);
+      } catch(e) {}
+    })();
+  </script>
 
   <!-- Full-width photo break -->
   <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden">
@@ -186,7 +258,7 @@ import VideoPlayer from '../components/VideoPlayer.astro';
       tab?.classList.add('flex');
     };
 
-    setTimeout(() => popup?.classList.remove('hidden'), 2500);
+    setTimeout(() => popup?.classList.remove('hidden'), 16000);
 
     document.getElementById('promo-close')?.addEventListener('click', minimize);
     document.getElementById('promo-dismiss')?.addEventListener('click', minimize);

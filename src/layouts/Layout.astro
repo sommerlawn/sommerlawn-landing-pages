@@ -2,9 +2,10 @@
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title, description = 'Sommer Lawn & Landscape — Lawn care services in Johnson County, KS' } = Astro.props;
+const { title, description = 'Sommer Lawn & Landscape — Lawn care services in Johnson County, KS', noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,6 +22,7 @@ const { title, description = 'Sommer Lawn & Landscape — Lawn care services in 
       rel="stylesheet"
     />
     <title>{title}</title>
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <style>
       body {
         font-family: 'Inter', system-ui, sans-serif;
