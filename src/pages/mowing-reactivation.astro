@@ -8,26 +8,44 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout
-  title="Mowing Service | Sommer Lawn & Landscape"
-  description="You got our flyer — here's the deal. Weekly or bi-weekly mowing in Johnson County, KS. Same crew, honest pricing, zero hassle."
+  title="Welcome Back | Sommer Lawn & Landscape"
+  description="You mowed with us last season — sign back up for weekly service and get your first mow free."
 >
   <Hero
     video="/mowing-b-roll.mp4"
-    prefixText="You Found Us —"
+    prefixText="Welcome Back —"
     highlightText="Sommer Lawn"
-    headline="Mowing Service"
-    subtitle="We left a flyer on your door because we work in your neighborhood. Like what you saw? Click the button to sign up."
-    ctaText="Sign Up"
-    ctaHref="#signup"
+    headline="Ready for Another Season?"
+    subtitle="We mowed for you last season and we'd love to keep it going. Sign up for weekly mowing and we'll give you your 4th mow free."
+    ctaText="Claim Your Free Mow"
+    ctaHref="#offer"
   />
-  <!-- Door Hanger Offer -->
+
+  <PriceDisplay />
+
+  <!-- VSL -->
+  <section class="bg-dark px-6 py-16">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-gray-400 text-sm mb-1">Hear it straight from us</p>
+      <p class="text-white font-bold text-xl mb-4">A Message from the Owner</p>
+      <video
+        src="/mowing-clients-reactivation.mp4"
+        controls
+        playsinline
+        preload="metadata"
+        class="w-full rounded-2xl"
+      ></video>
+    </div>
+  </section>
+
+  <!-- Reactivation Offer -->
   <section id="offer" class="bg-dark px-6 py-20">
     <div class="max-w-3xl mx-auto text-center">
       <div class="inline-block bg-smurf/20 border border-smurf/40 text-smurf text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
-        Door Hanger Special
+        Returning Customer Special
       </div>
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">2 Free Mows When You Sign Up</h2>
-      <p class="text-gray-400 text-lg mb-12">Sign up for recurring mowing service and we'll take care of your 2nd and 4th mows — completely free. No gimmicks, no contracts.</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Your 4th Mow Free When You Sign Up for Weekly Service</h2>
+      <p class="text-gray-400 text-lg mb-12">Sign back up for weekly mowing for the season and we'll take care of your 4th mow — completely free. No contracts, easy cancel anytime.</p>
 
       <div class="grid grid-cols-4 gap-2 sm:gap-3 mb-10">
         <div class="bg-dark-card border border-dark-border rounded-xl sm:rounded-2xl p-3 sm:p-5">
@@ -35,10 +53,10 @@ import Footer from '../components/Footer.astro';
           <p class="text-lg sm:text-2xl font-extrabold text-white">Paid</p>
           <p class="text-gray-500 text-[10px] sm:text-xs mt-1 leading-tight">Regular rate</p>
         </div>
-        <div class="bg-dark-card border border-smurf/40 rounded-xl sm:rounded-2xl p-3 sm:p-5 ring-1 ring-smurf/20">
-          <p class="text-smurf font-bold text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-widest mb-1 sm:mb-2">Mow 2</p>
-          <p class="text-lg sm:text-2xl font-extrabold text-white">FREE</p>
-          <p class="text-gray-500 text-[10px] sm:text-xs mt-1 leading-tight">On us</p>
+        <div class="bg-dark-card border border-dark-border rounded-xl sm:rounded-2xl p-3 sm:p-5">
+          <p class="text-gray-400 font-bold text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-widest mb-1 sm:mb-2">Mow 2</p>
+          <p class="text-lg sm:text-2xl font-extrabold text-white">Paid</p>
+          <p class="text-gray-500 text-[10px] sm:text-xs mt-1 leading-tight">Regular rate</p>
         </div>
         <div class="bg-dark-card border border-dark-border rounded-xl sm:rounded-2xl p-3 sm:p-5">
           <p class="text-gray-400 font-bold text-[10px] sm:text-xs uppercase tracking-wide sm:tracking-widest mb-1 sm:mb-2">Mow 3</p>
@@ -53,10 +71,9 @@ import Footer from '../components/Footer.astro';
       </div>
 
       <ul class="text-gray-500 text-sm mb-8 block mx-auto w-fit text-left space-y-1">
-        <li class="flex items-start gap-2"><span>•</span>Valid for new recurring mowing customers</li>
-        <li class="flex items-start gap-2"><span>•</span>Applies to standard weekly or bi-weekly service</li>
-        <li class="flex items-start gap-2"><span>•</span>An overgrown fee may apply on the initial service if the lawn requires extra work</li>
-        <li class="flex items-start gap-2"><span>•</span>Offer expires 7 days after the door hanger was placed</li>
+        <li class="flex items-start gap-2"><span>•</span>Must be weekly recurring service</li>
+        <li class="flex items-start gap-2"><span>•</span>An overgrown fee may apply if the lawn requires extra work on the first visit</li>
+        <li class="flex items-start gap-2"><span>•</span>Offer expires 7 days after receiving this message</li>
       </ul>
       <a
         href="#signup"
@@ -64,31 +81,10 @@ import Footer from '../components/Footer.astro';
       >
         Claim This Offer
       </a>
-
-      <!-- Arrow + VSL -->
-      <div class="mt-12">
-        <p class="text-gray-400 text-sm mb-1">Hear it straight from us</p>
-        <p class="text-white font-bold text-xl mb-2">A Message from the Owner <span class="text-smurf text-sm font-bold tracking-widest">DRAFT VIDEO</span></p>
-        <div class="animate-bounce text-smurf text-2xl mb-4">↓</div>
-        <video
-          src="/doorhanger-vsl.mov"
-          controls
-          playsinline
-          preload="metadata"
-          class="w-full rounded-2xl"
-        ></video>
-      </div>
     </div>
   </section>
 
-  <PriceDisplay />
-  <ValueProps title="Why Choose Us?" subtitle="We're already in your area so we'd love to earn your business!" />
-
-  <div class="bg-dark-card px-6 pb-16 text-center">
-    <a href="/" class="inline-block border border-dark-border hover:border-smurf/50 text-gray-300 hover:text-white font-semibold px-8 py-4 rounded-lg transition-colors">
-      Learn More About Sommer Lawn &rarr;
-    </a>
-  </div>
+  <ValueProps title="Why Stick With Us?" subtitle="You already know what you're getting — let's make it easy." />
 
   <!-- Full-width photo break -->
   <div class="relative h-64 md:h-80 lg:h-96 overflow-hidden">
@@ -98,13 +94,13 @@ import Footer from '../components/Footer.astro';
 
   <Testimonials />
 
-  <!-- Door Hanger Signup Form -->
+  <!-- Signup Form -->
   <section id="signup" class="px-6 py-20 bg-dark-card">
     <div class="max-w-2xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Sign Up?</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Get Back on the Schedule</h2>
       <p class="text-gray-400 mb-10">Fill out the form below and we'll get you set up.</p>
       <div class="bg-smurf rounded-2xl p-6 md:p-10 mb-8">
-        <div id="zf_div_mCLF17HUPGM5KzNxLivRZJm9bhzJls5IYX1KCqT8lko"></div>
+        <div id="zf_div_muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y"></div>
       </div>
     </div>
   </section>
@@ -113,7 +109,7 @@ import Footer from '../components/Footer.astro';
     (function() {
       try {
         var f = document.createElement("iframe");
-        var ifrmSrc = 'https://forms.zohopublic.com/sommerlawn/form/DoorHangerLandingForm/formperma/mCLF17HUPGM5KzNxLivRZJm9bhzJls5IYX1KCqT8lko?zf_rszfm=1';
+        var ifrmSrc = 'https://forms.zohopublic.com/sommerlawn/form/ServiceRequestFormexistingcustomers/formperma/muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y?zf_rszfm=1';
 
         try {
           if (typeof ZFAdvLead != "undefined" && typeof zfutm_zfAdvLead != "undefined") {
@@ -137,16 +133,22 @@ import Footer from '../components/Footer.astro';
           }
         } catch(e) {}
 
+        // Forward page URL params to Zoho form for prefilling
+        var pageParams = new URLSearchParams(window.location.search);
+        pageParams.forEach(function(value, key) {
+          if (key !== 'zf_rszfm') {
+            ifrmSrc += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+          }
+        });
+
         f.src = ifrmSrc;
         f.style.border = "none";
-        f.style.height = "2051px";
-        f.style.width = "90%";
-        f.style.display = "block";
-        f.style.margin = "0 auto";
+        f.style.height = "823px";
+        f.style.width = "100%";
         f.style.transition = "all 0.5s ease";
-        f.setAttribute("aria-label", "Mowing Door Hanger Form");
+        f.setAttribute("aria-label", "Mowing Reactivation Form");
 
-        var d = document.getElementById("zf_div_mCLF17HUPGM5KzNxLivRZJm9bhzJls5IYX1KCqT8lko");
+        var d = document.getElementById("zf_div_muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y");
         d.appendChild(f);
 
         window.addEventListener('message', function(event) {
@@ -156,7 +158,7 @@ import Footer from '../components/Footer.astro';
             if (zf_ifrm_data.length == 2 || zf_ifrm_data.length == 3) {
               var zf_perma = zf_ifrm_data[0];
               var zf_ifrm_ht_nw = (parseInt(zf_ifrm_data[1], 10) + 15) + "px";
-              var iframe = document.getElementById("zf_div_mCLF17HUPGM5KzNxLivRZJm9bhzJls5IYX1KCqT8lko").getElementsByTagName("iframe")[0];
+              var iframe = document.getElementById("zf_div_muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y").getElementsByTagName("iframe")[0];
               if ((iframe.src).indexOf('formperma') > 0 && (iframe.src).indexOf(zf_perma) > 0) {
                 if (zf_ifrm_data.length == 3) {
                   window.location.href = '/thank-you';
@@ -205,63 +207,5 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <Footer />
-
-  <!-- Door Hanger Popup -->
-  <div id="promo-popup" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="promo-backdrop"></div>
-    <div class="relative bg-dark-card border border-smurf/40 rounded-2xl p-6 max-w-sm w-full shadow-2xl shadow-smurf/10 text-center">
-      <button id="promo-close" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors text-xl leading-none">&times;</button>
-      <div class="text-5xl mb-3">🏡</div>
-      <div class="inline-block bg-smurf/20 border border-smurf/40 text-smurf text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
-        Door Hanger Special
-      </div>
-      <h2 class="text-2xl font-extrabold text-white mb-2">Just got our door hanger?</h2>
-      <p class="text-gray-300 text-sm mb-5">We're running a neighborhood special — sign up for recurring mowing and get your 2nd and 4th mows free.</p>
-      <a
-        id="promo-learn-more"
-        href="#offer"
-        class="block w-full bg-smurf hover:bg-smurf-dark text-white font-bold py-3 rounded-xl transition-colors mb-3"
-      >
-        See the Full Offer
-      </a>
-      <button id="promo-dismiss" class="w-full text-gray-500 hover:text-gray-300 text-sm transition-colors py-1">
-        Maybe later
-      </button>
-    </div>
-  </div>
-
-  <!-- Minimized promo tab -->
-  <button
-    id="promo-tab"
-    class="fixed bottom-4 left-4 z-50 hidden items-center gap-2 bg-dark-card border border-smurf/40 text-white text-sm font-bold px-4 py-3 rounded-2xl shadow-lg shadow-smurf/10 active:scale-95 transition-transform"
-  >
-    <span class="text-lg">🏡</span>
-    <span>Door hanger special — tap to view</span>
-  </button>
-
-  <script>
-    const popup = document.getElementById('promo-popup');
-    const tab = document.getElementById('promo-tab');
-
-    const open = () => {
-      popup?.classList.remove('hidden');
-      tab?.classList.remove('flex');
-      tab?.classList.add('hidden');
-    };
-
-    const minimize = () => {
-      popup?.classList.add('hidden');
-      tab?.classList.remove('hidden');
-      tab?.classList.add('flex');
-    };
-
-    setTimeout(() => popup?.classList.remove('hidden'), 16000);
-
-    document.getElementById('promo-close')?.addEventListener('click', minimize);
-    document.getElementById('promo-dismiss')?.addEventListener('click', minimize);
-    document.getElementById('promo-backdrop')?.addEventListener('click', minimize);
-    document.getElementById('promo-learn-more')?.addEventListener('click', minimize);
-    tab?.addEventListener('click', open);
-  </script>
 
 </Layout>
