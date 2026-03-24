@@ -11,8 +11,8 @@
       Fill out the form below and we'll get you set up — or just text us.
     </p>
 
-    <!-- Zoho Form Embed (only shown if account param present) -->
-    <div id="form-wrapper" class="bg-smurf rounded-2xl p-6 md:p-10 mb-8 hidden">
+    <!-- Zoho Form Embed -->
+    <div id="form-wrapper" class="bg-smurf rounded-2xl p-6 md:p-10 mb-8">
       <div id="zf_div_muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y" class="w-full max-w-2xl mx-auto"></div>
     </div>
 
@@ -42,9 +42,6 @@
 <script>
   (function() {
     var pageParams = new URLSearchParams(window.location.search);
-    if (!pageParams.get('account')) return;
-
-    document.getElementById('form-wrapper').classList.remove('hidden');
 
     try {
       var f = document.createElement("iframe");
