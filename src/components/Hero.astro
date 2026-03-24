@@ -76,7 +76,11 @@ const {
   if (name) {
     const heading = document.getElementById('hero-heading');
     if (heading) {
-      heading.innerHTML = personalizedHeadline.replace('{name}', name);
+      if (params.get('price')) {
+        heading.innerHTML = personalizedHeadline.replace('{name}', name);
+      } else {
+        heading.innerHTML = `Hey ${name}! Check out <span class="text-smurf">Sommer Lawn's</span> Mowing Service`;
+      }
     }
   }
 </script>
