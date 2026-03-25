@@ -1,0 +1,290 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+
+const rounds = [
+  {
+    number: 1,
+    name: 'Early Spring',
+    timing: 'March – April',
+    standard: ['Pre-emergent weed control', 'Slow-release fertilizer'],
+    eco: ['Slow-release organic fertilizer', 'Pre-emergent (corn gluten meal)'],
+  },
+  {
+    number: 2,
+    name: 'Late Spring',
+    timing: 'May',
+    standard: ['Pre-emergent + broadleaf weed control', 'Fertilizer'],
+    eco: ['Organic fertilizer', 'Natural broadleaf suppression'],
+  },
+  {
+    number: 3,
+    name: 'Early Summer',
+    timing: 'June',
+    standard: ['Fertilizer', 'Broadleaf weed control', 'Surface insect control'],
+    eco: ['Organic fertilizer', 'No chemical treatments'],
+  },
+  {
+    number: 4,
+    name: 'Mid Summer',
+    timing: 'July – August',
+    standard: ['Slow-release fertilizer', 'Spot weed treatment'],
+    eco: ['Organic fertilizer', 'No chemical treatments'],
+  },
+  {
+    number: 5,
+    name: 'Fall',
+    timing: 'September – October',
+    standard: ['Fertilizer', 'Broadleaf weed control'],
+    eco: ['Organic fertilizer'],
+  },
+  {
+    number: 6,
+    name: 'Late Fall',
+    timing: 'November',
+    standard: ['Winterizer fertilizer'],
+    eco: ['Organic winterizer fertilizer'],
+  },
+];
+---
+
+<Layout
+  title="Lawn Applications | Sommer Lawn & Landscape"
+  description="A 6-round lawn application program for Johnson County, KS. Choose our Standard or Eco program — the Eco option uses no herbicides, pesticides, or insecticides."
+>
+
+  <!-- Hero -->
+  <section class="relative min-h-[60vh] flex items-center justify-center px-6 py-20">
+    <div class="absolute inset-0">
+      <img src="/normal-mower.png" alt="Healthy green lawn" class="w-full h-full object-cover object-top" />
+      <div class="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/55 to-dark"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto text-center mt-16 md:mt-0">
+      <span class="inline-block bg-smurf/20 border border-smurf/40 text-smurf text-sm font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+        Coming Soon
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+        Lawn Application<br /><span class="text-smurf">Programs</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+        A 6-round seasonal program to keep your lawn thick, green, and healthy all year — with a chemical-free Eco option for families and pets.
+      </p>
+      <a
+        href="#notify"
+        class="inline-block bg-smurf hover:bg-smurf-dark text-white font-semibold text-lg px-8 py-4 rounded-lg transition-colors"
+      >
+        Get Notified When We Launch
+      </a>
+    </div>
+  </section>
+
+  <!-- Program Comparison -->
+  <section class="bg-dark-card px-6 py-20">
+    <div class="max-w-4xl mx-auto text-center mb-14">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Choose Your Program</h2>
+      <p class="text-gray-400 text-lg">Same great lawn results. Two different approaches.</p>
+    </div>
+    <div class="relative max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-8 opacity-40 pointer-events-none select-none">
+
+      <!-- Standard Program -->
+      <div class="bg-dark border border-dark-border rounded-2xl overflow-hidden flex flex-col">
+        <div class="bg-smurf px-6 py-5 text-center">
+          <h3 class="text-white font-extrabold text-xl uppercase tracking-wide">Standard Program</h3>
+          <p class="text-white/80 text-sm mt-1">Fertilization + full weed & pest control</p>
+        </div>
+        <div class="p-8 flex flex-col flex-1">
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start gap-3 text-gray-300">
+              <span class="text-smurf font-bold text-lg flex-shrink-0 leading-snug">✓</span>
+              Seasonal fertilizer applications
+            </li>
+            <li class="flex items-start gap-3 text-gray-300">
+              <span class="text-smurf font-bold text-lg flex-shrink-0 leading-snug">✓</span>
+              Pre-emergent weed control (spring)
+            </li>
+            <li class="flex items-start gap-3 text-gray-300">
+              <span class="text-smurf font-bold text-lg flex-shrink-0 leading-snug">✓</span>
+              Broadleaf weed control
+            </li>
+            <li class="flex items-start gap-3 text-gray-300">
+              <span class="text-smurf font-bold text-lg flex-shrink-0 leading-snug">✓</span>
+              Surface insect control
+            </li>
+            <li class="flex items-start gap-3 text-gray-300">
+              <span class="text-smurf font-bold text-lg flex-shrink-0 leading-snug">✓</span>
+              Fall winterizer
+            </li>
+          </ul>
+          <p class="text-gray-500 text-sm mt-auto">Best for: most lawns, maximum weed and pest suppression</p>
+        </div>
+      </div>
+
+      <!-- Healthy / Environmental Program -->
+      <div class="bg-dark border border-smurf/40 rounded-2xl overflow-hidden flex flex-col ring-1 ring-smurf/20">
+        <div class="bg-gradient-to-r from-green-700 to-green-600 px-6 py-5 text-center">
+          <h3 class="text-white font-extrabold text-xl uppercase tracking-wide">Eco Program</h3>
+          <p class="text-white/80 text-sm mt-1">Organic &amp; chemical-free</p>
+        </div>
+        <div class="p-8 flex flex-col flex-1">
+          <div class="inline-flex items-center gap-2 bg-green-900/40 border border-green-700/40 text-green-400 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5 self-start">
+            🌱 No herbicides &middot; No insecticides &middot; No pesticides
+          </div>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start gap-3 text-gray-300">
+              <span class="text-green-400 font-bold text-lg flex-shrink-0 leading-snug">✓</span>
+              Organic slow-release fertilizer
+            </li>
+            <li class="flex items-start gap-3 text-gray-300">
+              <span class="text-green-400 font-bold text-lg flex-shrink-0 leading-snug">✓</span>
+              Natural pre-emergent (corn gluten)
+            </li>
+            <li class="flex items-start gap-3 text-gray-300">
+              <span class="text-green-400 font-bold text-lg flex-shrink-0 leading-snug">✓</span>
+              Safe for kids, pets, and pollinators
+            </li>
+            <li class="flex items-start gap-3 text-gray-300">
+              <span class="text-green-400 font-bold text-lg flex-shrink-0 leading-snug">✓</span>
+              Builds long-term soil health
+            </li>
+            <li class="flex items-start gap-3 text-gray-300">
+              <span class="text-green-400 font-bold text-lg flex-shrink-0 leading-snug">✓</span>
+              Fall organic winterizer
+            </li>
+          </ul>
+          <p class="text-gray-500 text-sm mt-auto">Best for: families with kids, pets, or environmentally conscious homeowners</p>
+        </div>
+      </div>
+
+      </div>
+      <!-- Coming Soon overlay -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span class="bg-dark/80 border border-smurf/40 text-smurf text-sm font-bold uppercase tracking-widest px-6 py-3 rounded-full shadow-lg">
+          Coming Soon
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6-Round Schedule -->
+  <section class="bg-dark px-6 py-20">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-3">The 6-Round Schedule</h2>
+      <p class="text-gray-400 text-center text-lg mb-12">Timed perfectly for Johnson County's seasons.</p>
+      <div class="relative">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-40 pointer-events-none select-none">
+        {rounds.map((round) => (
+          <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-9 h-9 rounded-full bg-smurf/20 border border-smurf/40 flex items-center justify-center flex-shrink-0">
+                <span class="text-smurf font-extrabold text-sm">{round.number}</span>
+              </div>
+              <div>
+                <p class="text-white font-bold leading-tight">{round.name}</p>
+                <p class="text-gray-500 text-xs">{round.timing}</p>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div>
+                <p class="text-smurf text-xs font-bold uppercase tracking-widest mb-1.5">Standard</p>
+                <ul class="space-y-1">
+                  {round.standard.map(item => (
+                    <li class="text-gray-400 text-sm flex items-start gap-1.5">
+                      <span class="text-smurf/60 flex-shrink-0 mt-0.5">•</span>{item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="border-t border-dark-border pt-3">
+                <p class="text-green-500 text-xs font-bold uppercase tracking-widest mb-1.5">Eco</p>
+                <ul class="space-y-1">
+                  {round.eco.map(item => (
+                    <li class="text-gray-400 text-sm flex items-start gap-1.5">
+                      <span class="text-green-600/60 flex-shrink-0 mt-0.5">•</span>{item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <!-- Coming Soon overlay -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span class="bg-dark/80 border border-smurf/40 text-smurf text-sm font-bold uppercase tracking-widest px-6 py-3 rounded-full shadow-lg">
+          Coming Soon
+        </span>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notify Me -->
+  <section id="notify" class="bg-dark-card px-6 py-20">
+    <div class="max-w-2xl mx-auto text-center">
+      <span class="inline-block bg-smurf/20 border border-smurf/40 text-smurf text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-6">
+        Coming Soon
+      </span>
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Be the First to Know</h2>
+      <p class="text-gray-400 text-lg mb-10">
+        Lawn applications are launching soon. Drop your info below and we'll reach out as soon as it's available — you'll be at the front of the line.
+      </p>
+
+      <!-- Zoho Contact Form -->
+      <div id="zf_div_FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8_lawn" class="w-full"></div>
+    </div>
+  </section>
+
+  <!-- More Services -->
+  <section class="bg-dark px-6 py-16 text-center">
+    <p class="text-gray-400 text-lg mb-4">Looking for other services in the meantime?</p>
+    <a href="/services" class="text-smurf font-semibold text-lg hover:text-smurf-light transition-colors">
+      View All Services &rarr;
+    </a>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script>
+  (function() {
+    try {
+      var f = document.createElement("iframe");
+      var ifrmSrc = 'https://forms.zohopublic.com/sommerlawn/form/WebsiteContactForm/formperma/FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8?zf_rszfm=1';
+      f.src = ifrmSrc;
+      f.style.border = "none";
+      f.style.height = "1511px";
+      f.style.width = "100%";
+      f.style.display = "block";
+      f.style.borderRadius = "1rem";
+      f.style.transition = "all 0.5s ease";
+      f.setAttribute("allowfullscreen", "true");
+      f.setAttribute("allow", "geolocation;");
+      f.setAttribute("aria-label", "Website Contact Form");
+      var d = document.getElementById("zf_div_FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8_lawn");
+      if (d) d.appendChild(f);
+      window.addEventListener('message', function(event) {
+        var evntData = event.data;
+        if (evntData && evntData.constructor == String) {
+          var zf_ifrm_data = evntData.split("|");
+          if (zf_ifrm_data.length == 2 || zf_ifrm_data.length == 3) {
+            var zf_perma = zf_ifrm_data[0];
+            var zf_ifrm_ht_nw = (parseInt(zf_ifrm_data[1], 10) + 15) + "px";
+            var container = document.getElementById("zf_div_FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8_lawn");
+            if (!container) return;
+            var iframe = container.getElementsByTagName("iframe")[0];
+            if (iframe && iframe.src.indexOf('formperma') > 0 && iframe.src.indexOf(zf_perma) > 0) {
+              var prevIframeHeight = iframe.style.height;
+              var zf_tout = false;
+              if (zf_ifrm_data.length == 3) { iframe.scrollIntoView(); zf_tout = true; }
+              if (prevIframeHeight != zf_ifrm_ht_nw) {
+                if (zf_tout) { setTimeout(function() { iframe.style.height = zf_ifrm_ht_nw; }, 500); }
+                else { iframe.style.height = zf_ifrm_ht_nw; }
+              }
+            }
+          }
+        }
+      }, false);
+    } catch(e) {}
+  })();
+</script>

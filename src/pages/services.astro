@@ -14,17 +14,20 @@ const services = [
   {
     icon: '🌿',
     title: 'Bed Maintenance',
-    description: 'Weed pulling, shrub trimming, and bed cleanup to keep your landscaping looking its best.',
+    description: 'Regular weed pulling and shrub trimming to keep your beds looking sharp all season.',
+    href: '/bed-maintenance',
   },
   {
     icon: '🪵',
     title: 'Mulch Installation',
     description: 'Fresh mulch delivered and installed — clean edges, weed suppression, and instant curb appeal.',
+    href: '/mulch',
   },
   {
     icon: '🌳',
     title: 'Tree Pruning',
     description: "Professional pruning for trees up to 20'. Healthier trees, cleaner sight lines, safer property.",
+    href: '/tree-pruning',
   },
   {
     icon: '🍂',
@@ -36,6 +39,14 @@ const services = [
     icon: '❄️',
     title: 'Snow Removal',
     description: "Driveways, sidewalks, and walkways cleared fast so you're never stuck after a storm.",
+    href: '/snow-removal',
+  },
+  {
+    icon: '🌱',
+    title: 'Lawn Applications',
+    description: 'A 6-round seasonal program — fertilization, weed control, and an eco-friendly option with no herbicides or pesticides.',
+    href: '/lawn-applications',
+    badge: 'Coming Soon',
   },
 ];
 
@@ -81,10 +92,17 @@ const whyOneCompany = [
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {services.map((service) => (
-          <div class="bg-dark border border-dark-border rounded-xl p-8 transition-colors hover:border-smurf/30">
-            <div class="text-4xl mb-4">{service.icon}</div>
+          <div class="bg-dark border border-dark-border rounded-xl p-8 transition-colors hover:border-smurf/30 flex flex-col">
+            <div class="flex items-start justify-between gap-2 mb-4">
+              <span class="text-4xl">{service.icon}</span>
+              {service.badge && (
+                <span class="inline-block bg-smurf/20 border border-smurf/40 text-smurf text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-full flex-shrink-0 mt-1">
+                  {service.badge}
+                </span>
+              )}
+            </div>
             <h3 class="text-xl font-bold text-white mb-3">{service.title}</h3>
-            <p class="text-gray-300 mb-4">{service.description}</p>
+            <p class="text-gray-300 mb-4 flex-1">{service.description}</p>
             {service.href && (
               <a href={service.href} class="text-smurf font-semibold hover:text-smurf-light transition-colors">
                 Learn More &rarr;

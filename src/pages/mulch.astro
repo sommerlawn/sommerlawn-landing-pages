@@ -1,0 +1,107 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ValueProps from '../components/ValueProps.astro';
+import SignupForm from '../components/SignupForm.astro';
+import Footer from '../components/Footer.astro';
+
+const mulchValueProps = [
+  {
+    icon: '🚛',
+    title: 'Delivered & Installed',
+    feature: 'We handle everything.',
+    benefit: "No renting a truck or hauling bags. We deliver fresh mulch and spread it — all you have to do is enjoy the results.",
+  },
+  {
+    icon: '🏡',
+    title: 'Instant Curb Appeal',
+    feature: 'Fresh, uniform coverage.',
+    benefit: 'New mulch instantly refreshes your landscaping and makes your whole property look cleaner and more polished.',
+  },
+  {
+    icon: '🌿',
+    title: 'Weed Suppression',
+    feature: 'A natural barrier against weeds.',
+    benefit: 'A fresh layer of mulch blocks sunlight to the soil, reducing weeds all season — less work for you.',
+  },
+  {
+    icon: '💧',
+    title: 'Moisture Retention',
+    feature: 'Keeps soil healthier.',
+    benefit: 'Mulch slows evaporation so your plants and shrubs stay hydrated longer, even during hot dry stretches.',
+  },
+  {
+    icon: '✂️',
+    title: 'Clean Bed Edges',
+    feature: 'Crisp, defined borders.',
+    benefit: "We cut clean edges before laying mulch so your beds look sharp — not like an afterthought.",
+  },
+  {
+    icon: '💬',
+    title: 'Text Us Anytime',
+    feature: 'Quick communication, no phone tag.',
+    benefit: 'Get a fast quote or schedule with a simple text. We respond quickly and make it easy.',
+  },
+];
+---
+
+<Layout
+  title="Mulch Installation | Sommer Lawn & Landscape"
+  description="Fresh mulch delivered and installed in Johnson County, KS. Clean edges, weed suppression, and instant curb appeal."
+>
+  <Hero
+    image="/truck+mower.jpeg"
+    video="/general-b-roll.mp4"
+    imagePosition="object-center"
+    imageAlt="Sommer Lawn truck ready for a job"
+    headline="Mulch Installation"
+    highlightText="Sommer Lawn"
+    prefixText=""
+    subtitle="Fresh mulch delivered and installed — clean edges, weed suppression, and instant curb appeal."
+    ctaText="Get a Quote"
+    ctaHref="#signup"
+  />
+
+  <!-- How it works -->
+  <section class="bg-dark px-6 py-20">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-3">How It Works</h2>
+      <p class="text-gray-400 text-center text-lg mb-12">A complete mulch installation from start to finish.</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">✂️</div>
+          <h3 class="text-white font-bold text-lg mb-2">Edge the Beds</h3>
+          <p class="text-gray-400 text-sm">Crisp, clean borders cut in before any mulch is laid.</p>
+        </div>
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">🚛</div>
+          <h3 class="text-white font-bold text-lg mb-2">Deliver & Spread</h3>
+          <p class="text-gray-400 text-sm">Fresh mulch delivered and spread evenly across all beds.</p>
+        </div>
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">✅</div>
+          <h3 class="text-white font-bold text-lg mb-2">Clean Up & Done</h3>
+          <p class="text-gray-400 text-sm">Any stray mulch cleaned off concrete, beds looking great.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ValueProps
+    title="Why Choose Sommer Lawn?"
+    subtitle="Professional mulch installation that transforms your landscaping in a single visit."
+    items={mulchValueProps}
+  />
+
+  <SignupForm />
+
+  <!-- More Services -->
+  <section class="bg-dark-card px-6 py-16 text-center">
+    <p class="text-gray-400 text-lg mb-4">We do more than mulch installation.</p>
+    <a href="/services" class="text-smurf font-semibold text-lg hover:text-smurf-light transition-colors">
+      View All Services &rarr;
+    </a>
+  </section>
+
+  <Footer />
+</Layout>

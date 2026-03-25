@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ValueProps from '../components/ValueProps.astro';
+import SignupForm from '../components/SignupForm.astro';
+import Footer from '../components/Footer.astro';
+
+const treePruningValueProps = [
+  {
+    icon: '🌳',
+    title: 'Up to 20 Feet',
+    feature: 'Safely handled without lifts or climbing.',
+    benefit: 'We prune trees up to 20 feet using professional pole saws and equipment — no risk of damage to your property.',
+  },
+  {
+    icon: '💀',
+    title: 'Dead Wood Removal',
+    feature: 'Hazardous branches removed.',
+    benefit: 'Dead and hanging limbs are a hazard to your home, cars, and family. We remove them before they become a problem.',
+  },
+  {
+    icon: '👁️',
+    title: 'Sight Line Cleaning',
+    feature: 'Open up your views.',
+    benefit: 'Overgrown trees block light and sight lines. Strategic pruning opens up your yard and lets natural light back in.',
+  },
+  {
+    icon: '🌱',
+    title: 'Healthier Trees',
+    feature: 'Better airflow and structure.',
+    benefit: 'Proper pruning removes crossing branches and improves airflow, reducing disease and helping trees grow stronger.',
+  },
+  {
+    icon: '🚛',
+    title: 'Debris Hauled Off',
+    feature: 'Full cleanup included.',
+    benefit: 'All branches and clippings are hauled away. Your yard looks better after we leave, not worse.',
+  },
+  {
+    icon: '💬',
+    title: 'Text Us Anytime',
+    feature: 'Quick communication, no phone tag.',
+    benefit: 'Get a fast quote or schedule a visit with a simple text. We respond quickly and make it easy.',
+  },
+];
+---
+
+<Layout
+  title="Tree Pruning | Sommer Lawn & Landscape"
+  description="Professional tree pruning in Johnson County, KS. Dead wood removal, crown cleaning, and sight line clearing for trees up to 20 feet."
+>
+  <Hero
+    image="/background-trimmer.jpeg"
+    video="/general-b-roll.mp4"
+    imagePosition="object-center"
+    imageAlt="Sommer Lawn crew pruning trees"
+    headline="Tree Pruning"
+    highlightText="Sommer Lawn"
+    prefixText=""
+    subtitle="Professional pruning for trees up to 20&rsquo; — healthier trees, cleaner sight lines, and a safer property."
+    ctaText="Get a Quote"
+    ctaHref="#signup"
+  />
+
+  <!-- What we do -->
+  <section class="bg-dark px-6 py-20">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-3">What We Take Care Of</h2>
+      <p class="text-gray-400 text-center text-lg mb-12">Safe, professional pruning that improves your trees and your property.</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">💀</div>
+          <h3 class="text-white font-bold text-lg mb-2">Dead Branches</h3>
+          <p class="text-gray-400 text-sm">Hazardous dead wood removed before it falls.</p>
+        </div>
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">🌿</div>
+          <h3 class="text-white font-bold text-lg mb-2">Crown Cleaning</h3>
+          <p class="text-gray-400 text-sm">Crossing and cluttered branches thinned out.</p>
+        </div>
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">🏡</div>
+          <h3 class="text-white font-bold text-lg mb-2">Property Clearance</h3>
+          <p class="text-gray-400 text-sm">Limbs cleared from rooflines, gutters, and structures.</p>
+        </div>
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">🚛</div>
+          <h3 class="text-white font-bold text-lg mb-2">Full Debris Removal</h3>
+          <p class="text-gray-400 text-sm">All clippings and branches hauled away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ValueProps
+    title="Why Choose Sommer Lawn?"
+    subtitle="Professional pruning that makes your trees healthier and your yard look great."
+    items={treePruningValueProps}
+  />
+
+  <SignupForm />
+
+  <!-- More Services -->
+  <section class="bg-dark-card px-6 py-16 text-center">
+    <p class="text-gray-400 text-lg mb-4">We do more than tree pruning.</p>
+    <a href="/services" class="text-smurf font-semibold text-lg hover:text-smurf-light transition-colors">
+      View All Services &rarr;
+    </a>
+  </section>
+
+  <Footer />
+</Layout>

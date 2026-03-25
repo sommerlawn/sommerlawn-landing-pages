@@ -1,7 +1,48 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import ValueProps from '../components/ValueProps.astro';
+import SignupForm from '../components/SignupForm.astro';
 import Footer from '../components/Footer.astro';
+
+const snowValueProps = [
+  {
+    icon: '⚡',
+    title: 'Fast Response',
+    feature: 'We move quickly after every storm.',
+    benefit: 'We know you need to get out. We prioritize getting to your property fast so you\'re not stuck waiting.',
+  },
+  {
+    icon: '🛣️',
+    title: 'Driveways & Walkways',
+    feature: 'Full property coverage.',
+    benefit: 'Driveway, sidewalks, and walkways all cleared — not just the bare minimum to get by.',
+  },
+  {
+    icon: '🧂',
+    title: 'Salt & Ice Treatment',
+    feature: 'Safer surfaces after clearing.',
+    benefit: 'We treat surfaces after clearing so ice doesn\'t reform and you\'re not slipping the next morning.',
+  },
+  {
+    icon: '📱',
+    title: 'Text Reminders',
+    feature: 'Get notified when we\'re on the way.',
+    benefit: 'We\'ll let you know when we\'re headed to your property so you\'re never caught off guard.',
+  },
+  {
+    icon: '💳',
+    title: 'Card on File',
+    feature: 'Automatic charge after each visit.',
+    benefit: 'No invoices to track down. You get a receipt in your email after every service.',
+  },
+  {
+    icon: '💬',
+    title: 'Text Us Anytime',
+    feature: 'Quick communication, no phone tag.',
+    benefit: 'Shoot us a text to schedule, ask questions, or request a rush visit — we respond fast.',
+  },
+];
 ---
 
 <Layout
@@ -10,356 +51,56 @@ import Footer from '../components/Footer.astro';
 >
   <Hero
     image="/normal-mower.png"
+    imagePosition="object-top"
+    imageAlt="Sommer Lawn ready for winter service"
     headline="Snow Removal"
     highlightText="Sommer Lawn"
     prefixText="Winter Service by"
     subtitle="Driveways, sidewalks, and walkways cleared fast — so you're never stuck after a storm."
     ctaText="Get a Quote"
-    ctaHref="#quote"
+    ctaHref="#signup"
   />
 
-  <!-- Typeform-style quote form -->
-  <section id="quote" class="bg-dark min-h-screen flex items-center py-20">
-    <div class="w-full max-w-lg mx-auto px-10 text-center">
-
-      <!-- Progress bar (hidden on welcome) -->
-      <div id="progress-wrap" class="mb-12" style="opacity: 0; transition: opacity 0.5s ease; pointer-events: none;">
-        <div class="text-xs text-gray-600 mb-2.5">
-          <span id="step-label">1 of 4</span>
+  <!-- What we clear -->
+  <section class="bg-dark px-6 py-20">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-3">What We Clear</h2>
+      <p class="text-gray-400 text-center text-lg mb-12">Full property coverage after every storm.</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">🚗</div>
+          <h3 class="text-white font-bold text-lg mb-2">Driveway</h3>
+          <p class="text-gray-400 text-sm">Fully cleared so you can get in and out without issue.</p>
         </div>
-        <div class="h-px bg-dark-border rounded-full overflow-hidden">
-          <div id="progress-bar" class="h-px bg-smurf rounded-full" style="width: 0%; transition: width 0.5s ease-out"></div>
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">🚶</div>
+          <h3 class="text-white font-bold text-lg mb-2">Sidewalks</h3>
+          <p class="text-gray-400 text-sm">Front walk and public sidewalk cleared and treated.</p>
+        </div>
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">🧂</div>
+          <h3 class="text-white font-bold text-lg mb-2">Ice Treatment</h3>
+          <p class="text-gray-400 text-sm">Salt applied after clearing to prevent refreezing.</p>
         </div>
       </div>
-
-      <!-- Steps container -->
-      <div id="steps-container" class="relative" style="min-height: 340px">
-
-        <!-- Welcome screen -->
-        <div class="tf-step active" data-step="0">
-          <div class="wi">
-            <div class="inline-flex items-center gap-2 border border-smurf/25 text-smurf text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8">
-              ❄&nbsp; Snow Removal Quote
-            </div>
-          </div>
-          <div class="wi">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
-              Let's get you a<br>snow removal quote.
-            </h2>
-          </div>
-          <div class="wi">
-            <p class="text-gray-500 text-sm mb-10">
-              Takes about 30 seconds &nbsp;&middot;&nbsp; No spam &nbsp;&middot;&nbsp; Fast follow-up
-            </p>
-          </div>
-          <div class="wi">
-            <button id="get-started-btn" class="started-btn">
-              Get Started <span class="arrow">→</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Step 1: Address -->
-        <div class="tf-step" data-step="1">
-          <p class="step-counter">01 <span>/ 04</span></p>
-          <label for="f-address" class="block text-white text-xl md:text-2xl font-bold mb-6 leading-snug">
-            What's your address?
-          </label>
-          <input id="f-address" type="text" autocomplete="street-address"
-            class="tf-input" placeholder="123 Main St, Overland Park, KS" />
-          <div class="mt-8 flex items-center justify-center gap-4">
-            <button type="button" class="next-btn">OK ✓</button>
-            <span class="text-gray-600 text-sm">or press <span class="text-gray-500 font-medium">Enter ↵</span></span>
-          </div>
-        </div>
-
-        <!-- Step 2: First name -->
-        <div class="tf-step" data-step="2">
-          <p class="step-counter">02 <span>/ 04</span></p>
-          <label for="f-first" class="block text-white text-xl md:text-2xl font-bold mb-6 leading-snug">
-            What's your first name?
-          </label>
-          <input id="f-first" type="text" autocomplete="given-name"
-            class="tf-input" placeholder="John" />
-          <div class="mt-8 flex items-center justify-center gap-4">
-            <button type="button" class="next-btn">OK ✓</button>
-            <span class="text-gray-600 text-sm">or press <span class="text-gray-500 font-medium">Enter ↵</span></span>
-          </div>
-        </div>
-
-        <!-- Step 3: Last name -->
-        <div class="tf-step" data-step="3">
-          <p class="step-counter">03 <span>/ 04</span></p>
-          <label for="f-last" class="block text-white text-xl md:text-2xl font-bold mb-6 leading-snug">
-            And your last name?
-          </label>
-          <input id="f-last" type="text" autocomplete="family-name"
-            class="tf-input" placeholder="Smith" />
-          <div class="mt-8 flex items-center justify-center gap-4">
-            <button type="button" class="next-btn">OK ✓</button>
-            <span class="text-gray-600 text-sm">or press <span class="text-gray-500 font-medium">Enter ↵</span></span>
-          </div>
-        </div>
-
-        <!-- Step 4: Email -->
-        <div class="tf-step" data-step="4">
-          <p class="step-counter">04 <span>/ 04</span></p>
-          <label for="f-email" class="block text-white text-xl md:text-2xl font-bold mb-6 leading-snug">
-            Last one — what's your email?
-          </label>
-          <input id="f-email" type="email" autocomplete="email"
-            class="tf-input" placeholder="john@example.com" />
-          <div class="mt-8 flex items-center justify-center gap-4">
-            <button type="button" id="submit-btn" class="next-btn">Submit →</button>
-            <span class="text-gray-600 text-sm">or press <span class="text-gray-500 font-medium">Enter ↵</span></span>
-          </div>
-        </div>
-
-      </div>
-
-      <button type="button" id="back-btn"
-        class="mt-6 text-gray-600 hover:text-gray-400 text-sm transition-colors"
-        style="visibility: hidden">
-        ↑ Back
-      </button>
-
     </div>
   </section>
 
-  <!-- Hidden form for Netlify build-time detection -->
-  <form name="snow-removal" data-netlify="true" hidden>
-    <input name="address" />
-    <input name="first-name" />
-    <input name="last-name" />
-    <input name="email" />
-  </form>
+  <ValueProps
+    title="Why Choose Sommer Lawn?"
+    subtitle="Fast, reliable snow removal so you're never stuck after a storm."
+    items={snowValueProps}
+  />
+
+  <SignupForm />
+
+  <!-- More Services -->
+  <section class="bg-dark-card px-6 py-16 text-center">
+    <p class="text-gray-400 text-lg mb-4">We do more than snow removal.</p>
+    <a href="/services" class="text-smurf font-semibold text-lg hover:text-smurf-light transition-colors">
+      View All Services &rarr;
+    </a>
+  </section>
 
   <Footer />
 </Layout>
-
-<style>
-  /* ── Step transitions ── */
-  .tf-step {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.38s ease, transform 0.38s ease;
-    pointer-events: none;
-  }
-  .tf-step.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  .tf-step.above {
-    opacity: 0;
-    transform: translateY(-28px);
-  }
-
-  /* ── Welcome stagger animations ── */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .wi { opacity: 0; }
-  .wi.go { animation: fadeInUp 0.55s ease forwards; }
-  .wi.go:nth-child(1) { animation-delay: 0.05s; }
-  .wi.go:nth-child(2) { animation-delay: 0.18s; }
-  .wi.go:nth-child(3) { animation-delay: 0.31s; }
-  .wi.go:nth-child(4) { animation-delay: 0.44s; }
-
-  /* ── Get Started button ── */
-  .started-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: #00AEEF;
-    color: white;
-    font-size: 1.05rem;
-    font-weight: 700;
-    padding: 0.9rem 2.25rem;
-    border-radius: 0.75rem;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 0 32px rgba(0, 174, 239, 0.28);
-    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
-  }
-  .started-btn:hover {
-    background: #0099d4;
-    box-shadow: 0 0 48px rgba(0, 174, 239, 0.45);
-  }
-  .started-btn:active { transform: scale(0.97); }
-  .started-btn .arrow {
-    display: inline-block;
-    transition: transform 0.2s ease;
-  }
-  .started-btn:hover .arrow { transform: translateX(5px); }
-
-  /* ── Step counter ── */
-  .step-counter {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #00AEEF;
-    margin-bottom: 0.875rem;
-  }
-  .step-counter span {
-    color: #4b5563;
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: 0;
-  }
-
-  /* ── Input ── */
-  .tf-input {
-    display: block;
-    width: 50%;
-    margin: 0 auto;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #1f2937;
-    color: white;
-    font-size: 1.2rem;
-    padding: 0.75rem 0;
-    outline: none;
-    text-align: center;
-    transition: border-color 0.2s ease;
-  }
-  .tf-input::placeholder { color: #374151; }
-  .tf-input:focus { border-color: #00AEEF; }
-  .tf-input.error {
-    border-color: rgb(239 68 68);
-    animation: shake 0.28s ease;
-  }
-
-  /* ── OK / Submit button ── */
-  .next-btn {
-    background: #00AEEF;
-    color: white;
-    font-weight: 600;
-    padding: 0.55rem 1.35rem;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    transition: background 0.15s ease, transform 0.1s ease;
-  }
-  .next-btn:hover { background: #0099d4; }
-  .next-btn:active { transform: scale(0.97); }
-
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25%       { transform: translateX(-6px); }
-    75%       { transform: translateX(6px); }
-  }
-</style>
-
-<script>
-  const TOTAL   = 5;   // 0 = welcome, 1–4 = form steps
-  const N_FORM  = 4;
-
-  const stepEls      = Array.from({ length: TOTAL }, (_, i) =>
-    document.querySelector(`[data-step="${i}"]`) as HTMLElement
-  );
-  const inputs       = ['f-address', 'f-first', 'f-last', 'f-email'].map(
-    id => document.getElementById(id) as HTMLInputElement
-  );
-  const progressWrap = document.getElementById('progress-wrap') as HTMLElement;
-  const progressBar  = document.getElementById('progress-bar')  as HTMLElement;
-  const stepLabel    = document.getElementById('step-label')    as HTMLElement;
-  const backBtn      = document.getElementById('back-btn')      as HTMLButtonElement;
-  let cur = 0;
-
-  function updateUI() {
-    const onForm = cur > 0;
-    progressWrap.style.opacity       = onForm ? '1' : '0';
-    progressWrap.style.pointerEvents = onForm ? 'auto' : 'none';
-    if (onForm) {
-      progressBar.style.width  = `${((cur - 1) / N_FORM) * 100}%`;
-      stepLabel.textContent    = `${cur} of ${N_FORM}`;
-    }
-    backBtn.style.visibility = cur >= 1 ? 'visible' : 'hidden';
-  }
-
-  function goTo(next: number, dir: 'forward' | 'backward') {
-    const from = stepEls[cur];
-    const to   = stepEls[next];
-
-    from.classList.remove('active');
-    if (dir === 'forward') from.classList.add('above');
-
-    if (dir === 'backward') {
-      to.classList.add('active');
-      to.classList.remove('above');
-    } else {
-      requestAnimationFrame(() => requestAnimationFrame(() => to.classList.add('active')));
-    }
-
-    cur = next;
-    updateUI();
-    if (cur > 0) setTimeout(() => inputs[cur - 1]?.focus(), 380);
-  }
-
-  function flashError(inp: HTMLInputElement) {
-    inp.classList.add('error');
-    inp.focus();
-    setTimeout(() => inp.classList.remove('error'), 800);
-  }
-
-  function advance() {
-    const inp = inputs[cur - 1];
-    if (!inp?.value.trim()) { flashError(inp); return; }
-    if (cur < TOTAL - 1) goTo(cur + 1, 'forward');
-  }
-
-  // Welcome → first question
-  document.getElementById('get-started-btn')
-    ?.addEventListener('click', () => goTo(1, 'forward'));
-
-  // Next buttons
-  document.querySelectorAll('.next-btn:not(#submit-btn)')
-    .forEach(btn => btn.addEventListener('click', advance));
-
-  // Enter key
-  inputs.forEach((inp, i) => {
-    inp?.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key !== 'Enter') return;
-      e.preventDefault();
-      if (i === N_FORM - 1) submitForm();
-      else advance();
-    });
-  });
-
-  backBtn.addEventListener('click', () => { if (cur > 0) goTo(cur - 1, 'backward'); });
-
-  document.getElementById('submit-btn')?.addEventListener('click', submitForm);
-
-  function submitForm() {
-    const inp = inputs[N_FORM - 1];
-    if (!inp?.value.trim()) { flashError(inp); return; }
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        'form-name': 'snow-removal',
-        'address':    inputs[0].value,
-        'first-name': inputs[1].value,
-        'last-name':  inputs[2].value,
-        'email':      inputs[3].value,
-      }).toString(),
-    }).finally(() => { window.location.href = '/thank-you'; });
-  }
-
-  // Trigger welcome stagger when section scrolls into view
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      document.querySelectorAll('.wi').forEach(el => el.classList.add('go'));
-      observer.disconnect();
-    }
-  }, { threshold: 0.25 });
-  const section = document.getElementById('quote');
-  if (section) observer.observe(section);
-
-  updateUI();
-</script>
