@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ValueProps from '../components/ValueProps.astro';
+import SignupForm from '../components/SignupForm.astro';
+import Footer from '../components/Footer.astro';
+
+const bedValueProps = [
+  {
+    icon: '🌿',
+    title: 'Weed Removal',
+    feature: 'Hand-pulled by the root.',
+    benefit: 'We pull weeds out at the root — not just trimmed back — so they don\'t keep coming back visit after visit.',
+  },
+  {
+    icon: '✂️',
+    title: 'Shrub Trimming',
+    feature: 'Shaped and cleaned up.',
+    benefit: 'Overgrown shrubs drag down the look of your whole yard. We trim them back so your landscaping looks intentional.',
+  },
+  {
+    icon: '🚛',
+    title: 'Debris Hauled Away',
+    feature: 'We clean up after ourselves.',
+    benefit: "We don't leave a mess behind. Trimmings and weeds are hauled off so your yard looks great when we leave.",
+  },
+  {
+    icon: '📅',
+    title: 'Recurring Maintenance',
+    feature: 'Regular scheduled visits.',
+    benefit: 'We keep your beds on a consistent schedule so weeds never get out of hand and your shrubs always look tidy.',
+  },
+  {
+    icon: '💳',
+    title: 'Card on File',
+    feature: 'Automatic charge after each visit.',
+    benefit: 'No invoices to track down. You get a receipt in your email and never have to think about it.',
+  },
+  {
+    icon: '💬',
+    title: 'Text Us Anytime',
+    feature: 'Quick communication, no phone tag.',
+    benefit: 'Shoot us a quick text to schedule, adjust, or ask questions — we respond fast.',
+  },
+];
+---
+
+<Layout
+  title="Bed Maintenance | Sommer Lawn & Landscape"
+  description="Professional bed maintenance in Johnson County, KS. Weed removal, shrub trimming, and bed cleanup to keep your landscaping looking its best."
+>
+  <Hero
+    image="/background-trimmer.jpeg"
+    video="/general-b-roll.mp4"
+    imagePosition="object-center"
+    imageAlt="Sommer Lawn maintaining landscape beds"
+    headline="Bed Maintenance"
+    highlightText="Sommer Lawn"
+    prefixText=""
+    subtitle="Weed removal and shrub trimming — we keep your beds looking sharp all season."
+    ctaText="Get a Quote"
+    ctaHref="#signup"
+  />
+
+  <!-- What's Included -->
+  <section class="bg-dark px-6 py-20">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-3">What's Included</h2>
+      <p class="text-gray-400 text-center text-lg mb-12">Two things done right, on a regular schedule.</p>
+      <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">🌿</div>
+          <h3 class="text-white font-bold text-lg mb-2">Weed Removal</h3>
+          <p class="text-gray-400 text-sm">Hand-pulled by the root so they don't come right back.</p>
+        </div>
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">✂️</div>
+          <h3 class="text-white font-bold text-lg mb-2">Shrub Trimming</h3>
+          <p class="text-gray-400 text-sm">Shaped and tidy — overgrowth cleaned up so your landscaping looks intentional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ValueProps
+    title="Why Choose Sommer Lawn?"
+    subtitle="Professional bed maintenance that keeps your landscaping looking sharp — without the hassle."
+    items={bedValueProps}
+  />
+
+  <!-- Photo break -->
+  <div class="relative h-64 md:h-80 overflow-hidden">
+    <img src="/background-trimmer.jpeg" alt="Sommer Lawn trimming landscape beds" class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/30"></div>
+  </div>
+
+  <SignupForm />
+
+  <!-- More Services -->
+  <section class="bg-dark-card px-6 py-16 text-center">
+    <p class="text-gray-400 text-lg mb-4">We do more than bed maintenance.</p>
+    <a href="/services" class="text-smurf font-semibold text-lg hover:text-smurf-light transition-colors">
+      View All Services &rarr;
+    </a>
+  </section>
+
+  <Footer />
+</Layout>

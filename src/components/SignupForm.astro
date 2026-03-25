@@ -13,7 +13,10 @@
 
     <!-- Zoho Form Embed -->
     <div id="form-wrapper" class="bg-smurf rounded-2xl p-6 md:p-10 mb-8">
-      <div id="zf_div_muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y" class="w-full max-w-2xl mx-auto"></div>
+      <!-- Website Contact Form (default) -->
+      <div id="zf_div_FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8" class="w-full max-w-2xl mx-auto"></div>
+      <!-- Service Request Form (existing customers with account param) -->
+      <div id="zf_div_muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y" class="w-full max-w-2xl mx-auto" style="display:none"></div>
     </div>
 
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -42,77 +45,106 @@
 <script>
   (function() {
     var pageParams = new URLSearchParams(window.location.search);
+    var hasAccount = pageParams.has('account') && pageParams.get('account') !== '';
 
-    try {
-      var f = document.createElement("iframe");
-      var ifrmSrc = 'https://forms.zohopublic.com/sommerlawn/form/ServiceRequestFormexistingcustomers/formperma/muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y?zf_rszfm=1';
-
+    function buildZohoIframe(divId, formSrc, ariaLabel, defaultHeight) {
       try {
-        if (typeof ZFAdvLead != "undefined" && typeof zfutm_zfAdvLead != "undefined") {
-          for (var prmIdx = 0; prmIdx < ZFAdvLead.utmPNameArr.length; prmIdx++) {
-            var utmPm = ZFAdvLead.utmPNameArr[prmIdx];
-            utmPm = (ZFAdvLead.isSameDomian && (ZFAdvLead.utmcustPNameArr.indexOf(utmPm) == -1)) ? "zf_" + utmPm : utmPm;
-            var utmVal = zfutm_zfAdvLead.zfautm_gC_enc(ZFAdvLead.utmPNameArr[prmIdx]);
-            if (typeof utmVal !== "undefined" && utmVal != "") {
-              ifrmSrc += (ifrmSrc.indexOf('?') > 0 ? '&' : '?') + utmPm + '=' + utmVal;
-            }
-          }
-        }
-        if (typeof ZFLead !== "undefined" && typeof zfutm_zfLead !== "undefined") {
-          for (var prmIdx = 0; prmIdx < ZFLead.utmPNameArr.length; prmIdx++) {
-            var utmPm = ZFLead.utmPNameArr[prmIdx];
-            var utmVal = zfutm_zfLead.zfutm_gC_enc(ZFLead.utmPNameArr[prmIdx]);
-            if (typeof utmVal !== "undefined" && utmVal != "") {
-              ifrmSrc += (ifrmSrc.indexOf('?') > 0 ? '&' : '?') + utmPm + '=' + utmVal;
-            }
-          }
-        }
-      } catch(e) {}
+        var f = document.createElement("iframe");
+        var ifrmSrc = formSrc;
 
-      // Forward page URL params to Zoho form for prefilling
-      var pageParams = new URLSearchParams(window.location.search);
-      pageParams.forEach(function(value, key) {
-        if (key !== 'zf_rszfm') {
-          ifrmSrc += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
-        }
-      });
-
-      f.src = ifrmSrc;
-      f.style.border = "none";
-      f.style.height = "823px";
-      f.style.width = "100%";
-      f.style.transition = "all 0.5s ease";
-      f.setAttribute("aria-label", "Service Request Form (existing customers)");
-
-      var d = document.getElementById("zf_div_muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y");
-      d.appendChild(f);
-
-      window.addEventListener('message', function(event) {
-        var evntData = event.data;
-        if (evntData && evntData.constructor == String) {
-          var zf_ifrm_data = evntData.split("|");
-          if (zf_ifrm_data.length == 2 || zf_ifrm_data.length == 3) {
-            var zf_perma = zf_ifrm_data[0];
-            var zf_ifrm_ht_nw = (parseInt(zf_ifrm_data[1], 10) + 15) + "px";
-            var iframe = document.getElementById("zf_div_muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y").getElementsByTagName("iframe")[0];
-            if ((iframe.src).indexOf('formperma') > 0 && (iframe.src).indexOf(zf_perma) > 0) {
-              var prevIframeHeight = iframe.style.height;
-              var zf_tout = false;
-              if (zf_ifrm_data.length == 3) {
-                iframe.scrollIntoView();
-                zf_tout = true;
+        try {
+          if (typeof ZFAdvLead != "undefined" && typeof zfutm_zfAdvLead != "undefined") {
+            for (var prmIdx = 0; prmIdx < ZFAdvLead.utmPNameArr.length; prmIdx++) {
+              var utmPm = ZFAdvLead.utmPNameArr[prmIdx];
+              utmPm = (ZFAdvLead.isSameDomian && (ZFAdvLead.utmcustPNameArr.indexOf(utmPm) == -1)) ? "zf_" + utmPm : utmPm;
+              var utmVal = zfutm_zfAdvLead.zfautm_gC_enc(ZFAdvLead.utmPNameArr[prmIdx]);
+              if (typeof utmVal !== "undefined" && utmVal != "") {
+                ifrmSrc += (ifrmSrc.indexOf('?') > 0 ? '&' : '?') + utmPm + '=' + utmVal;
               }
-              if (prevIframeHeight != zf_ifrm_ht_nw) {
-                if (zf_tout) {
-                  setTimeout(function() { iframe.style.height = zf_ifrm_ht_nw; }, 500);
-                } else {
-                  iframe.style.height = zf_ifrm_ht_nw;
+            }
+          }
+          if (typeof ZFLead !== "undefined" && typeof zfutm_zfLead !== "undefined") {
+            for (var prmIdx = 0; prmIdx < ZFLead.utmPNameArr.length; prmIdx++) {
+              var utmPm = ZFLead.utmPNameArr[prmIdx];
+              var utmVal = zfutm_zfLead.zfutm_gC_enc(ZFLead.utmPNameArr[prmIdx]);
+              if (typeof utmVal !== "undefined" && utmVal != "") {
+                ifrmSrc += (ifrmSrc.indexOf('?') > 0 ? '&' : '?') + utmPm + '=' + utmVal;
+              }
+            }
+          }
+        } catch(e) {}
+
+        pageParams.forEach(function(value, key) {
+          if (key !== 'zf_rszfm') {
+            ifrmSrc += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+          }
+        });
+
+        f.src = ifrmSrc;
+        f.style.border = "none";
+        f.style.height = defaultHeight;
+        f.style.width = "100%";
+        f.style.display = "block";
+        f.style.borderRadius = "1rem";
+        f.style.transition = "all 0.5s ease";
+        f.setAttribute("allowfullscreen", "true");
+        f.setAttribute("allow", "geolocation;");
+        f.setAttribute("aria-label", ariaLabel);
+
+        var d = document.getElementById(divId);
+        if (!d) return;
+        d.appendChild(f);
+
+        window.addEventListener('message', function(event) {
+          var evntData = event.data;
+          if (evntData && evntData.constructor == String) {
+            var zf_ifrm_data = evntData.split("|");
+            if (zf_ifrm_data.length == 2 || zf_ifrm_data.length == 3) {
+              var zf_perma = zf_ifrm_data[0];
+              var zf_ifrm_ht_nw = (parseInt(zf_ifrm_data[1], 10) + 15) + "px";
+              var container = document.getElementById(divId);
+              if (!container) return;
+              var iframe = container.getElementsByTagName("iframe")[0];
+              if (iframe && (iframe.src).indexOf('formperma') > 0 && (iframe.src).indexOf(zf_perma) > 0) {
+                var prevIframeHeight = iframe.style.height;
+                var zf_tout = false;
+                if (zf_ifrm_data.length == 3) {
+                  iframe.scrollIntoView();
+                  zf_tout = true;
+                }
+                if (prevIframeHeight != zf_ifrm_ht_nw) {
+                  if (zf_tout) {
+                    setTimeout(function() { iframe.style.height = zf_ifrm_ht_nw; }, 500);
+                  } else {
+                    iframe.style.height = zf_ifrm_ht_nw;
+                  }
                 }
               }
             }
           }
-        }
-      }, false);
-    } catch(e) {}
+        }, false);
+      } catch(e) {}
+    }
+
+    if (hasAccount) {
+      // Existing customer with account param — show service request form
+      var srDiv = document.getElementById("zf_div_muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y");
+      srDiv.style.display = "";
+      document.getElementById("zf_div_FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8").style.display = "none";
+      buildZohoIframe(
+        "zf_div_muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y",
+        "https://forms.zohopublic.com/sommerlawn/form/ServiceRequestFormexistingcustomers/formperma/muOCT3gdrMs257uLZAK9pZTRlLHxlwH6qFdPbiG_49Y?zf_rszfm=1",
+        "Service Request Form (existing customers)",
+        "823px"
+      );
+    } else {
+      // Default — show website contact form
+      buildZohoIframe(
+        "zf_div_FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8",
+        "https://forms.zohopublic.com/sommerlawn/form/WebsiteContactForm/formperma/FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8?zf_rszfm=1",
+        "Website Contact Form",
+        "1511px"
+      );
+    }
   })();
 </script>
