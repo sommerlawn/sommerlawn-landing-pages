@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SignupForm from '../components/SignupForm.astro';
 import Footer from '../components/Footer.astro';
 
 const rounds = [
@@ -213,18 +214,7 @@ const rounds = [
     </div>
   </section>
 
-  <!-- Sign Up -->
-  <section id="signup" class="bg-dark-card px-6 py-20">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Sign Up Today</h2>
-      <p class="text-gray-400 text-lg mb-10">
-        Ready to get started? Fill out the form below and we'll get your lawn on the program.
-      </p>
-
-      <!-- Zoho Contact Form -->
-      <div id="zf_div_FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8_lawn" class="w-full"></div>
-    </div>
-  </section>
+  <SignupForm />
 
   <!-- More Services -->
   <section class="bg-dark px-6 py-16 text-center">
@@ -237,45 +227,3 @@ const rounds = [
   <Footer />
 </Layout>
 
-<script>
-  (function() {
-    try {
-      var f = document.createElement("iframe");
-      var ifrmSrc = 'https://forms.zohopublic.com/sommerlawn/form/WebsiteContactForm/formperma/FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8?zf_rszfm=1';
-      f.src = ifrmSrc;
-      f.style.border = "none";
-      f.style.height = "1511px";
-      f.style.width = "100%";
-      f.style.display = "block";
-      f.style.borderRadius = "1rem";
-      f.style.transition = "all 0.5s ease";
-      f.setAttribute("allowfullscreen", "true");
-      f.setAttribute("allow", "geolocation;");
-      f.setAttribute("aria-label", "Website Contact Form");
-      var d = document.getElementById("zf_div_FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8_lawn");
-      if (d) d.appendChild(f);
-      window.addEventListener('message', function(event) {
-        var evntData = event.data;
-        if (evntData && evntData.constructor == String) {
-          var zf_ifrm_data = evntData.split("|");
-          if (zf_ifrm_data.length == 2 || zf_ifrm_data.length == 3) {
-            var zf_perma = zf_ifrm_data[0];
-            var zf_ifrm_ht_nw = (parseInt(zf_ifrm_data[1], 10) + 15) + "px";
-            var container = document.getElementById("zf_div_FWvssGKhkDoDzVGFt09Ne2IrL-7z259etOEFt3kCwI8_lawn");
-            if (!container) return;
-            var iframe = container.getElementsByTagName("iframe")[0];
-            if (iframe && iframe.src.indexOf('formperma') > 0 && iframe.src.indexOf(zf_perma) > 0) {
-              var prevIframeHeight = iframe.style.height;
-              var zf_tout = false;
-              if (zf_ifrm_data.length == 3) { iframe.scrollIntoView(); zf_tout = true; }
-              if (prevIframeHeight != zf_ifrm_ht_nw) {
-                if (zf_tout) { setTimeout(function() { iframe.style.height = zf_ifrm_ht_nw; }, 500); }
-                else { iframe.style.height = zf_ifrm_ht_nw; }
-              }
-            }
-          }
-        }
-      }, false);
-    } catch(e) {}
-  })();
-</script>
