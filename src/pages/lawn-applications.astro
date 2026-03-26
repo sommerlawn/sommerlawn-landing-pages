@@ -62,7 +62,7 @@ const rounds = [
       <div class="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/55 to-dark"></div>
     </div>
     <div class="relative z-10 max-w-3xl mx-auto text-center mt-16 md:mt-0">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+      <h1 id="hero-heading" class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
         Lawn Application<br /><span class="text-smurf">Programs</span>
       </h1>
       <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
@@ -74,6 +74,25 @@ const rounds = [
       >
         Get Started
       </a>
+    </div>
+  </section>
+
+  <!-- Personalized Price Display -->
+  <section id="price-display" class="hidden bg-dark px-6 py-16">
+    <div class="max-w-sm mx-auto text-center">
+      <p class="text-gray-400 text-lg mb-8">Your personalized lawn applications price</p>
+      <div class="border border-smurf/30 rounded-2xl px-8 py-10 shadow-[0_0_30px_rgba(0,174,239,0.1)]">
+        <p class="text-gray-400 text-sm uppercase tracking-wide mb-3">Per Round</p>
+        <div class="mb-3">
+          <span class="text-smurf text-2xl font-semibold align-top">$</span>
+          <span id="price-amount" class="text-smurf text-6xl md:text-7xl font-bold"></span>
+          <span class="text-gray-400 text-lg">/round</span>
+        </div>
+        <p class="text-gray-500 text-sm mb-6">7 rounds per year — fertilization, weed control, and grub prevention</p>
+        <a href="#signup" class="inline-block bg-smurf hover:bg-smurf-dark text-white font-semibold text-lg px-8 py-4 rounded-lg transition-colors">
+          Sign Up Today
+        </a>
+      </div>
     </div>
   </section>
 
@@ -226,4 +245,34 @@ const rounds = [
 
   <Footer />
 </Layout>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get('first');
+  const priceRaw = params.get('price');
+
+  if (name) {
+    const heading = document.getElementById('hero-heading');
+    if (heading) {
+      if (priceRaw) {
+        heading.innerHTML = `Hey ${name}! Check out your personalized<br />Lawn Applications price from <span class="text-smurf">Sommer Lawn</span>.`;
+      } else {
+        heading.innerHTML = `Hey ${name}! Check out <span class="text-smurf">Sommer Lawn's</span> Lawn Application Programs`;
+      }
+    }
+  }
+
+  if (priceRaw) {
+    const sanitized = priceRaw.replace(/[^\d.]/g, '');
+    const formatted = sanitized.includes('.') ? parseFloat(sanitized).toFixed(2) : sanitized;
+    if (formatted && !isNaN(Number(formatted))) {
+      const section = document.getElementById('price-display');
+      const amount = document.getElementById('price-amount');
+      if (section && amount) {
+        amount.textContent = formatted;
+        section.classList.remove('hidden');
+      }
+    }
+  }
+</script>
 
