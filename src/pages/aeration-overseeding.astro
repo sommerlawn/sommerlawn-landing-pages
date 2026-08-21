@@ -1,0 +1,259 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ValueProps from '../components/ValueProps.astro';
+import Testimonials from '../components/Testimonials.astro';
+import SignupForm from '../components/SignupForm.astro';
+import Footer from '../components/Footer.astro';
+
+const aerationValueProps = [
+  {
+    icon: '🌱',
+    title: 'A Thicker Lawn',
+    feature: 'New grass fills in the thin spots.',
+    benefit: 'Fresh seed dropped into open aeration holes gives you a denser lawn next spring — not just a green one.',
+  },
+  {
+    icon: '🧱',
+    title: 'Beats Kansas Clay',
+    feature: 'Compaction pulled out by the plug.',
+    benefit: 'Our heavy clay soil packs down hard every summer. Core aeration physically removes plugs so roots have room to grow again.',
+  },
+  {
+    icon: '💧',
+    title: 'Water Actually Soaks In',
+    feature: 'Less runoff, deeper roots.',
+    benefit: 'Instead of running off compacted ground, water and fertilizer reach the root zone where they do some good.',
+  },
+  {
+    icon: '🌾',
+    title: 'Quality Seed',
+    feature: 'Turf-type tall fescue built for Kansas.',
+    benefit: "We use a blend chosen for our transition-zone summers — not the cheapest bag on the shelf.",
+  },
+  {
+    icon: '🍂',
+    title: 'Right Time of Year',
+    feature: 'Fall is the window that works.',
+    benefit: 'Late August through October gives new seed warm soil and cool air to establish before winter. Spring seeding rarely survives our summer.',
+  },
+  {
+    icon: '💬',
+    title: 'Text Us Anytime',
+    feature: 'Quick communication, no phone tag.',
+    benefit: "Shoot us a quick text to schedule, ask questions, or check where you're at in the queue — we respond fast.",
+  },
+];
+
+const aftercare = [
+  {
+    title: 'Leave the Plugs',
+    description: "Those soil plugs on your lawn break down on their own in 2–3 weeks. Don't rake them up — they're feeding the lawn back.",
+  },
+  {
+    title: 'Mow High, Wait to Treat',
+    description: "Mow at 3–4\" and hold off on weed control until new grass has been mowed a few times — herbicide kills baby grass too.",
+  },
+];
+---
+
+<Layout
+  title="Core Aeration & Overseeding | Sommer Lawn & Landscape"
+  description="Core aeration and overseeding in Johnson County, KS. We pull plugs to break up compacted clay soil and overseed with turf-type tall fescue for a thicker lawn next spring."
+>
+  <Hero
+    image="/far-back-mower.jpeg"
+    video="/general-b-roll.mp4"
+    imagePosition="object-center"
+    imageAlt="Healthy, thick lawn maintained by Sommer Lawn"
+    badge="Fall Booking Open"
+    prefixText=""
+    highlightText="Core Aeration"
+    headline="& Overseeding"
+    subtitle="Break up compacted Kansas clay and thicken your lawn with fresh seed — the single best thing you can do for your grass all year."
+    ctaText="Get My Price"
+    ctaHref="#signup"
+    personalizedHeadline={`Hey {name}! Here's your personalized<br /><span class="text-smurf">Aeration & Overseeding</span> price.`}
+    personalizedHeadlineNoPrice={`Hey {name}! It's time to aerate and overseed with <span class="text-smurf">Sommer Lawn</span>.`}
+  />
+
+  <!-- Personalized pricing (shown only when ?price= or ?overseed= is present) -->
+  <section id="price-display" class="hidden px-6 py-16 bg-dark">
+    <p class="text-gray-400 text-lg mb-8 text-center">Your personalized pricing</p>
+
+    <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Aeration only -->
+      <div id="price-aeration" class="hidden text-center border border-dark-border rounded-2xl px-8 py-10">
+        <p class="text-gray-400 text-sm uppercase tracking-wide mb-3">Core Aeration</p>
+        <div class="mb-3">
+          <span class="text-smurf text-2xl font-semibold align-top">$</span>
+          <span id="price-aeration-amount" class="text-smurf text-6xl md:text-7xl font-bold"></span>
+        </div>
+        <p class="text-gray-500 text-sm mb-6">
+          Full-lawn core aeration — plugs pulled across the entire turf area
+        </p>
+        <a
+          href="#signup"
+          class="inline-block border border-dark-border hover:border-smurf/50 text-gray-300 hover:text-white font-semibold text-lg px-8 py-4 rounded-lg transition-colors"
+        >
+          Get on the Schedule
+        </a>
+      </div>
+
+      <!-- Aeration + overseeding -->
+      <div id="price-overseed" class="hidden relative text-center border border-smurf/30 rounded-2xl px-8 py-10 shadow-[0_0_30px_rgba(0,174,239,0.1)]">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-smurf text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">
+          Most Popular
+        </span>
+        <p class="text-gray-400 text-sm uppercase tracking-wide mb-3">Aeration + Overseeding</p>
+        <div class="mb-3">
+          <span class="text-smurf text-2xl font-semibold align-top">$</span>
+          <span id="price-overseed-amount" class="text-smurf text-6xl md:text-7xl font-bold"></span>
+        </div>
+        <p class="text-gray-500 text-sm mb-6">
+          Core aeration plus a full overseed with turf-type tall fescue
+        </p>
+        <a
+          href="#signup"
+          class="inline-block bg-smurf hover:bg-smurf-dark text-white font-semibold text-lg px-8 py-4 rounded-lg transition-colors"
+        >
+          Get on the Schedule
+        </a>
+      </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto mt-6 flex items-start gap-3 bg-yellow-400/10 border border-yellow-400/40 rounded-xl px-5 py-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-yellow-400 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+      </svg>
+      <p class="text-yellow-300 text-sm leading-relaxed">
+        <span class="font-semibold">Before we come out:</span> please have any sprinkler heads, invisible fence lines, and shallow utilities flagged. Aeration tines go 2–3" into the ground.
+      </p>
+    </div>
+  </section>
+
+  <!-- What's Included -->
+  <section class="bg-dark px-6 py-20">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-3">What's Included</h2>
+      <p class="text-gray-400 text-center text-lg mb-12">Two steps that work best together.</p>
+      <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">🕳️</div>
+          <h3 class="text-white font-bold text-lg mb-2">Core Aeration</h3>
+          <p class="text-gray-400 text-sm">We pull thousands of soil plugs across your lawn, opening up compacted ground so air, water, and nutrients reach the roots.</p>
+        </div>
+        <div class="bg-dark-card border border-dark-border rounded-xl p-6 text-center">
+          <div class="text-4xl mb-4">🌾</div>
+          <h3 class="text-white font-bold text-lg mb-2">Overseeding</h3>
+          <p class="text-gray-400 text-sm">Fresh turf-type tall fescue spread across the lawn. Seed settles into the open holes for real soil contact — that's where germination happens.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ValueProps
+    title="Why Aerate and Overseed?"
+    subtitle="If you only do one thing for your lawn this year, this is it — and fall is the window."
+    items={aerationValueProps}
+  />
+
+  <!-- Photo break -->
+  <div class="relative h-64 md:h-80 overflow-hidden">
+    <img src="/highdef-mower.jpeg" alt="Thick, healthy lawn in Johnson County, KS" class="w-full h-full object-cover object-center" />
+    <div class="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/30"></div>
+  </div>
+
+  <!-- Aftercare -->
+  <section class="bg-dark px-6 py-20">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-3">After We're Done</h2>
+      <p class="text-gray-400 text-center text-lg mb-12">What happens next is up to you — and one thing matters more than everything else combined.</p>
+
+      <!-- The one thing that makes or breaks the seed -->
+      <div class="bg-smurf/10 border-2 border-smurf rounded-2xl p-8 md:p-10 mb-8 shadow-[0_0_40px_rgba(0,174,239,0.15)]">
+        <div class="flex flex-col sm:flex-row items-start gap-5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-smurf shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.25s6.75 7.02 6.75 11.25a6.75 6.75 0 11-13.5 0C5.25 9.27 12 2.25 12 2.25zm0 15.75a4.5 4.5 0 004.5-4.5.75.75 0 00-1.5 0 3 3 0 01-3 3 .75.75 0 000 1.5z" />
+          </svg>
+          <div>
+            <p class="text-smurf text-xs font-bold uppercase tracking-widest mb-2">Crucial — don't skip this</p>
+            <h3 class="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">
+              The seed must stay damp for two full weeks
+            </h3>
+            <p class="text-gray-300 leading-relaxed mb-4">
+              This is the whole ballgame. Grass seed only germinates while it's consistently moist — and once a seed starts
+              to sprout and then dries out, <span class="text-white font-semibold">it dies and it does not come back</span>.
+              A lawn that gets watered and one that doesn't are two completely different results from the same job.
+            </p>
+            <p class="text-gray-300 leading-relaxed">
+              Water lightly <span class="text-white font-semibold">every day for the first two weeks</span> — enough to keep
+              the top inch damp, twice a day if it's hot or windy. Short and frequent beats one long soak, which just runs off
+              and carries seed with it. After you see germination, back off to less frequent, deeper watering.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {aftercare.map((step) => (
+          <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">{step.title}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Testimonials />
+
+  <SignupForm />
+
+  <!-- More Services -->
+  <section class="bg-dark-card px-6 py-16 text-center">
+    <p class="text-gray-400 text-lg mb-4">We do more than aeration.</p>
+    <a href="/services" class="text-smurf font-semibold text-lg hover:text-smurf-light transition-colors">
+      View All Services &rarr;
+    </a>
+  </section>
+
+  <Footer />
+</Layout>
+
+<script>
+  function formatPrice(raw: string): string | null {
+    const sanitized = raw.replace(/[^\d.]/g, '');
+    if (!sanitized || isNaN(Number(sanitized))) return null;
+    return sanitized.includes('.') ? parseFloat(sanitized).toFixed(2) : sanitized;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const aerationRaw = params.get('price');
+  const overseedRaw = params.get('overseed');
+
+  const aeration = aerationRaw ? formatPrice(aerationRaw) : null;
+  const overseed = overseedRaw ? formatPrice(overseedRaw) : null;
+
+  if (aeration || overseed) {
+    document.getElementById('price-display')?.classList.remove('hidden');
+
+    if (aeration) {
+      const card = document.getElementById('price-aeration');
+      const amount = document.getElementById('price-aeration-amount');
+      if (card && amount) {
+        amount.textContent = aeration;
+        card.classList.remove('hidden');
+      }
+    }
+
+    if (overseed) {
+      const card = document.getElementById('price-overseed');
+      const amount = document.getElementById('price-overseed-amount');
+      if (card && amount) {
+        amount.textContent = overseed;
+        card.classList.remove('hidden');
+      }
+    }
+  }
+</script>

@@ -11,6 +11,7 @@ interface Props {
   prefixText?: string;
   ctaHref?: string;
   personalizedHeadline?: string;
+  personalizedHeadlineNoPrice?: string;
   badge?: string;
 }
 
@@ -26,6 +27,7 @@ const {
   ctaText = 'Sign Up',
   ctaHref = '#signup',
   personalizedHeadline = `Hey {name}! Check out your personalized<br />Mowing price from <span class="text-smurf">Sommer Lawn</span>.`,
+  personalizedHeadlineNoPrice = `Hey {name}! Check out <span class="text-smurf">Sommer Lawn's</span> Mowing Service`,
   badge,
 } = Astro.props;
 ---
@@ -70,17 +72,19 @@ const {
   </div>
 </section>
 
-<script is:inline define:vars={{ personalizedHeadline }}>
+<script is:inline define:vars={{ personalizedHeadline, personalizedHeadlineNoPrice }}>
   const params = new URLSearchParams(window.location.search);
   const name = params.get('first');
   if (name) {
     const heading = document.getElementById('hero-heading');
     if (heading) {
-      if (params.get('price')) {
-        heading.innerHTML = personalizedHeadline.replace('{name}', name);
-      } else {
-        heading.innerHTML = `Hey ${name}! Check out <span class="text-smurf">Sommer Lawn's</span> Mowing Service`;
-      }
+      // The headline templates contain markup, so they go in via innerHTML —
+      // escape the URL-supplied name so it can't inject any of its own.
+      const safeName = name.replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+      })[c]);
+      const template = params.get('price') ? personalizedHeadline : personalizedHeadlineNoPrice;
+      heading.innerHTML = template.replace('{name}', safeName);
     }
   }
 </script>
